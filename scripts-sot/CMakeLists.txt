@@ -17,7 +17,7 @@ SET(DYN_LIB_EXT ${CMAKE_SHARED_LIBRARY_SUFFIX})
 SET(cmakeextension "\\.cmake")
 SET(${PROJECT_NAME}_SCRIPT_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 SET(${PROJECT_NAME}_SCRIPT_BUILD_DIR ${${PROJECT_NAME}_BINARY_DIR}/script)
-SET(${PROJECT_NAME}_SCRIPT_INSTALL_DIR script)
+SET(${PROJECT_NAME}_SCRIPT_INSTALL_DIR share/dynamic-graph/script)
 
 # --- MACROS -------------------------------------------
 MACRO(SOT_GENERATE_SCRIPT listofscripttocreate)

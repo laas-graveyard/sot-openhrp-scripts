@@ -34,4 +34,4 @@ By building this package, you install the scripts in two different installation 
 
 - `${OPENHRP_HOME}/Controller/IOServer/${ROBOT}/scripts` directory
   for python scripts,
-- `${CMAKE_INSTALL_PREFIX}/script` directory for SOT scripts
+- `${CMAKE_INSTALL_PREFIX}/share/dynamic-grap/script` directory for SOT scripts
