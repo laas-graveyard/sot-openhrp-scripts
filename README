@@ -5,4 +5,4 @@ The version of openhrp currently supported is: version 3.0.5; the scripts have b
 
 By building this package, you install the scripts in two different installation directories:
 - your ${OPENHRP_HOME}/Controller/IOServer/${ROBOT}/scripts directory for python scripts;
-- your ${CMAKE_INSTALL_PREFIX}/scripts directory for SOT scripts
+- your ${CMAKE_INSTALL_PREFIX}/script directory for SOT scripts

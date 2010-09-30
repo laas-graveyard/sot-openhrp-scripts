@@ -40,6 +40,13 @@ SET(install_pkg_libdir "\${libdir}")
 SET(install_pkg_datarootdir "\${datarootdir}")
 SET(install_pkg_include_dir "\${includedir}")
 
+
+# where are use-specific cmake modules
+SET(CMAKE_MODULE_PATH ${${PROJECT_NAME}_SOURCE_DIR}/CMakeModules)
+
+# --- OpenHRP ------------------------------------------------
+FIND_PACKAGE(OpenHRP REQUIRED)
+
 IF(UNIX)
   SET (${PROJECT_NAME}_LDFLAGS "-Wl,-R${install_pkg_libdir} ${LIBINCL_KW}${PROJECT_NAME}${LIB_EXT} ${${PROJECT_NAME}_LDFLAGS}")
 ENDIF(UNIX)
@@ -58,9 +65,8 @@ INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}.pc
   DESTINATION ${install_libdir_pkgconfig}	
   PERMISSIONS OWNER_READ GROUP_READ WORLD_READ OWNER_WRITE)
 
-ADD_SUBDIRECTORY(src)
-ADD_SUBDIRECTORY(include)
-ADD_SUBDIRECTORY(unitTesting)
+ADD_SUBDIRECTORY(scripts-openhrp)
+ADD_SUBDIRECTORY(scripts-sot)
 
 #
 # Documentation produced by doxygen

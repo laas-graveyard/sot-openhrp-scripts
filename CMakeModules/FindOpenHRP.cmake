@@ -28,6 +28,11 @@ FIND_PATH(OPENHRP3_HOME NAME Controller/IOserver/corba/HRPcontroller.idl
     			PATHS $ENV{OPENHRPHOME}
     			      $ENV{HOME}/src/OpenHRP $ENV{HOME}/src/OpenHRP-3
 			      $ENV{HOME} )
+SET(ROBOT $ENV{ROBOT})
+IF("${ROBOT}" STREQUAL "")
+#define default robot name
+SET(ROBOT "HRP2JRL")
+ENDIF("${ROBOT}" STREQUAL "")
 
 # --- MACRO ---
 # Define automatic variables for the robot model, depending on the OH version.
@@ -55,12 +60,12 @@ IF(OPENHRP_HOME OR OPENHRP3_HOME)
   IF(OPENHRP3_HOME)
     SET(OPENHRP_VERSION_3 1)
     SET(OPENHRP_HOME ${OPENHRP3_HOME})  
-    OPENHRP_CONFIG_DIR_DEFAULT(${OPENHRP_HOME}/Controller/IOserver/robot/HRP2JRL/model/ 
-                               ${OPENHRP_HOME}/Controller/IOserver/robot/HRP2JRL/etc/)
+    OPENHRP_CONFIG_DIR_DEFAULT(${OPENHRP_HOME}/Controller/IOserver/robot/${ROBOT}/model/ 
+                               ${OPENHRP_HOME}/Controller/IOserver/robot/${ROBOT}/etc/)
   ELSE(OPENHRP3_HOME)
     SET(OPENHRP_VERSION_2 1)
-    OPENHRP_CONFIG_DIR_DEFAULT(${OPENHRP_HOME}/etc/HRP2JRL/
-			       ${OPENHRP_HOME}/Controller/IOserver/robot/HRP2JRL/bin/)
+    OPENHRP_CONFIG_DIR_DEFAULT(${OPENHRP_HOME}/etc/${ROBOT}/
+			       ${OPENHRP_HOME}/Controller/IOserver/robot/${ROBOT}/bin/)
   ENDIF(OPENHRP3_HOME)
 
   IF(OMNIORB4_FOUND)
