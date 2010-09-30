@@ -1,8 +1,0 @@
-This package contains scripts for operation of the stack of tasks (SoT - see package sot-core for more information) with openHRP. 
-Two different sorts of scripts are provided: example python scripts for openhrp (the most relevant being sotWalkTask.py) and 
-(necessary) initialisation scripts for the stack of tasks (written in the SoT scripting language).
-The version of openhrp currently supported is: version 3.0.5; the scripts have been tested with the robot HRP2-10.
-
-By building this package, you install the scripts in two different installation directories:
-- your ${OPENHRP_HOME}/Controller/IOServer/${ROBOT}/scripts directory for python scripts;
-- your ${CMAKE_INSTALL_PREFIX}/script directory for SOT scripts
