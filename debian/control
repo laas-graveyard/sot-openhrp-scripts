@@ -12,7 +12,7 @@ Standards-Version: 3.8.4
 Section: libs
 #Homepage:
 
-Package: libsot-openhrp-scripts1.0.0.99
+Package: sot-openhrp-scripts
 Architecture: all
 Depends: openhrp3.0.5 (>= 3.0.5), ${shlibs:Depends}, ${misc:Depends}
 Description: OpenHRP and dynamic-graph scripts
