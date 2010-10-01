@@ -5,7 +5,6 @@ Build-Depends: debhelper (>= 7.0.50~), cmake (>= 2.6),
 	       doxygen (>= 1.6.3),
 	       pkg-config (>= 0.22),
 	       openhrp3.0.5 (>= 3.0.5)
-#FIXME: openhrp
 Standards-Version: 3.8.4
 #Vcs-Git:
 #Vcs-browser:
@@ -14,7 +13,7 @@ Section: libs
 
 Package: sot-openhrp-scripts
 Architecture: all
-Depends: openhrp3.0.5 (>= 3.0.5), ${shlibs:Depends}, ${misc:Depends}
+Depends: openhrp3.0.5 (>= 3.0.5), libsot-openhrp1.0.0.99 (>= 1.0.0.99), ${shlibs:Depends}, ${misc:Depends}
 Description: OpenHRP and dynamic-graph scripts
  Scripts are required to perform high-level tasks when using OpenHRP and
  dynamic-graph.
