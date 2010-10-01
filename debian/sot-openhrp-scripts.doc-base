@@ -1,0 +1,9 @@
+Document: hrp2-10
+Title: Debian hrp2-10 Manual
+Author: Olivier Stasse <olivier.stasse@gmail.com>
+Abstract: Doxygen documentation of hrp2-10.
+Section: Programming
+
+Format: HTML
+Index: /usr/share/doc/sot-openhrp-scripts/html/index.html
+Files: /usr/share/doc/sot-openhrp-scripts/html/*.html
