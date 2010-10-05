@@ -1,238 +1,199 @@
-# Olivier Stasse, JRL-CNRS
-#          from Nicolas Mansard, LAAS-CNRS
-# 	   from Olivier Stasse
-# 10/07/2009
-# 22/07/2009 Adding installation in the proper directory (OS.)
+# Copyright (C) 2010 François Bleibel, Thomas Moulard, JRL, CNRS/AIST.
+#
+# This file is part of sot-openhrp-scripts.
+# sot-openhrp-scripts is free software: you can redistribute it and/or
+# modify it under the terms of the GNU Lesser General Public License
+# as published by the Free Software Foundation, either version 3 of
+# the License, or (at your option) any later version.
+#
+# sot-openhrp-scripts is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# General Lesser Public License for more details.  You should have
+# received a copy of the GNU Lesser General Public License along with
+# sot-openhrp-scripts. If not, see <http://www.gnu.org/licenses/>.
 
-# Where is the trace repository?
+INCLUDE(sot-scripts.cmake)
+
+# Search for required directories.
+FIND_PATH(
+  HRP2_MODEL_DIRECTORY HRP2JRLmain.wrl
+  DOC "HRP-2 model directory"
+  NO_DEFAULT_PATH
+  )
+
+FIND_PATH(
+  HRP2_CONFIG_DIRECTORY HRP2LinkJointRank.xml
+  DOC "HRP-2 configuration directory"
+  NO_DEFAULT_PATH
+  )
+
+IF(NOT HRP2_MODEL_DIRECTORY)
+  MESSAGE(FATAL_ERROR "Failed to find the HRP-2 model directory.")
+ENDIF(NOT HRP2_MODEL_DIRECTORY)
+IF(NOT HRP2_CONFIG_DIRECTORY)
+  MESSAGE(FATAL_ERROR "Failed to find the HRP-2 configuration directory.")
+ENDIF(NOT HRP2_CONFIG_DIRECTORY)
+
+
+# Variables required for script generation.
+SET(DYN_LIB_EXT ${CMAKE_SHARED_LIBRARY_SUFFIX})
+
+#  Where is the trace repository?
+#  FIXME: this is wrong. Trace output should go to a better place.
 IF(WIN32)
   SET(TRACE_REPOSITORY "C:/tmp/")
 ELSEIF(UNIX)
     SET(TRACE_REPOSITORY "/tmp/")
 ENDIF(WIN32)
 
-SET(DYN_LIB_EXT ${CMAKE_SHARED_LIBRARY_SUFFIX})
+INSTALL_GENERATED_SOT_SCRIPTS(share/dynamic-graph/script
+  hri_init
+  base
+  cmake_install
+  dyn
+  dynfilessmall
+  collisiondetection
+  dynsmall
+  dynfiles
+  traces
+  walkreact-force
+  hwpgpginitpart1
+  dynsmallpart1hrp2_10_old
+  simu
+  dynsmallpart1hrp2_10
+  coshell
+  dynfilessmallhrp2_10_old
+  dynfilessmallhrp2_10
+  dynmc
+  sot-scripts
+  simusmall
+  walkreact-joystick
+  plugin.txt
+  hwpgpginit
+  walkreact-new
+  hwpgpginitpart1hrp2_10
+  hwpg
+  )
 
-# --- MAIN DIRECTORIES ---------------------------------
-SET(cmakeextension "\\.cmake")
-SET(${PROJECT_NAME}_SCRIPT_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR})
-SET(${PROJECT_NAME}_SCRIPT_BUILD_DIR ${${PROJECT_NAME}_BINARY_DIR}/script)
-SET(${PROJECT_NAME}_SCRIPT_INSTALL_DIR share/dynamic-graph/script)
+INSTALL_SOT_SCRIPTS(share/dynamic-graph/script
+  handsAltitude
+  pgcom
+  stepping
+  walkreact
+  forcehrp2_10
+  acc
+  selector
+  small
+  traj
+  calibhrp2_10
+  griphr2_10
+  smallmchrp2_10
+  forceSimu
+  walkreactrobotatcwe
+  smallmc
+  detrace.awk
+  jointlimit
+  hwpgpginitpart2
+  base.in
+  forceLhrp2_10
+  smallhrp2_10
+  soth
+  calib
+  forceL
+  hwpginitframes
+  dynsmallpart2
+  taskPosturehrp2_10
+  grip
+  force
+  sothhrp2_10
+  clamp-workspace
+  acchrp2_10
+  dynsmallpart2hrp2_10
+  taskPosture
+  )
 
-# --- MACROS -------------------------------------------
-MACRO(SOT_GENERATE_SCRIPT listofscripttocreate)
-  FOREACH(scripttochange ${ARGV})
-    STRING(REGEX REPLACE "${cmakeextension}$" "" scripttarget ${scripttochange})
-    CONFIGURE_FILE(${${PROJECT_NAME}_SCRIPT_SOURCE_DIR}/${scripttochange}
-		   ${${PROJECT_NAME}_SCRIPT_BUILD_DIR}/${scripttarget})
+# hri
+INSTALL_SOT_SCRIPTS(share/dynamic-graph/script/hri hri/hri)
 
-    SET(ISTHEREADIRECTORY "")
-    STRING(REGEX MATCH "/" ISTHEREADIRECTORY ${scripttochange})
+# optimization
+INSTALL_GENERATED_SOT_SCRIPTS(share/dynamic-graph/script/optimization
+  optimization/frigoSmall
+  optimization/frigoSmallhrp2_10_small
+  )
+INSTALL_SOT_SCRIPTS(share/dynamic-graph/script/optimization
+  optimization/frigo
+  optimization/frigohrp2_10_small
+  )
 
-    SET(SCRIPTDESTINATIONDIR ${${PROJECT_NAME}_SCRIPT_INSTALL_DIR} )
-    IF(ISTHEREADIRECTORY)
-       STRING(REGEX MATCH "[a-zA-Z0-9]*/" THEDIRECTORY1 ${scripttochange})
-       STRING(REGEX REPLACE "/" "" THEDIRECTORY2 ${THEDIRECTORY1})
-       SET(SCRIPTDESTINATIONDIR "${${PROJECT_NAME}_SCRIPT_INSTALL_DIR}/${THEDIRECTORY2}" )
-    ENDIF(ISTHEREADIRECTORY)
+# stab
+INSTALL_GENERATED_SOT_SCRIPTS(share/dynamic-graph/script/stab
+  stab/flexibility
+  )
+INSTALL_SOT_SCRIPTS(share/dynamic-graph/script/stab
+  stab/flex
+  stab/sylvain
+  )
 
-    INSTALL(FILES ${${PROJECT_NAME}_SCRIPT_BUILD_DIR}/${scripttarget}
-            DESTINATION ${SCRIPTDESTINATIONDIR}
-	    PERMISSIONS OWNER_READ GROUP_READ WORLD_READ)
-  ENDFOREACH(scripttochange)
-ENDMACRO(SOT_GENERATE_SCRIPT)
+# task-learning
+INSTALL_GENERATED_SOT_SCRIPTS(
+  share/dynamic-graph/script/taskLearning
+  taskLearning/taskLearning
+  )
 
-MACRO(SOT_INSTALL_SCRIPT listofscripttoinstall )
+# teleoperation
+INSTALL_SOT_SCRIPTS(share/dynamic-graph/script/teleoperation
+  teleoperation/data_epfl
+  teleoperation/initConnec
+  teleoperation/initConnecVFwave
+  teleoperation/teleophrp2_10
+  teleoperation/teleopVFwave
+  teleoperation/data_tum
+  teleoperation/initConnecAll
+  teleoperation/teleop
+  teleoperation/teleophrp2_small
+  teleoperation/firfilter
+  teleoperation/initConnecPhantom
+  teleoperation/teleopAll
+  teleoperation/teleop_traces
+  )
 
+# unittests
+INSTALL_GENERATED_SOT_SCRIPTS(share/dynamic-graph/script/unittests
+  unittests/chronoQr
+  unittests/testInertia
+  )
+INSTALL_SOT_SCRIPTS(share/dynamic-graph/script/unittests
+  unittests/chrono
+  unittests/ik_arm
+  unittests/ik_arm_sensor
+  unittests/ik_arm_sensor_passive
+  unittests/ik_arm_sensor_vel
+  unittests/ik_com
+  unittests/ik_jl_arm
+  unittests/readme
+  unittests/sotUnit.py
+  )
 
-  FOREACH(scripttoinstall ${ARGV})
-
-    SET(ISTHEREADIRECTORY "")
-    STRING(REGEX MATCH "/" ISTHEREADIRECTORY ${scripttoinstall})
-    SET(SCRIPTDESTINATIONDIR ${${PROJECT_NAME}_SCRIPT_INSTALL_DIR} )
-
-    IF(ISTHEREADIRECTORY)
-       STRING(REGEX MATCH "[a-zA-Z0-9]*/" THEDIRECTORY1 ${scripttoinstall})
-       STRING(REGEX REPLACE "/" "" THEDIRECTORY2 ${THEDIRECTORY1})
-       SET(SCRIPTDESTINATIONDIR "${${PROJECT_NAME}_SCRIPT_INSTALL_DIR}/${THEDIRECTORY2}" )
-    ENDIF(ISTHEREADIRECTORY)
-
-    INSTALL(FILES ${${PROJECT_NAME}_SCRIPT_SOURCE_DIR}/${scripttoinstall}
-            DESTINATION ${SCRIPTDESTINATIONDIR}
-	    PERMISSIONS OWNER_READ GROUP_READ WORLD_READ)
-  ENDFOREACH(scripttoinstall)
-ENDMACRO(SOT_INSTALL_SCRIPT)
-
-# ----------------------------------------------------
-# ---- PLUGIN LIST -----------------------------------
-# ----------------------------------------------------
-
-SET(PLUGIN_LIST_FILENAME plugin.txt)
-#NOTE: plugins list disabled for now, assuming all present
- SET(BoostThread_Plugins "distant-shell${DYN_LIB_EXT}\nperiodic-call-entity${DYN_LIB_EXT}")
- SET(unix_Plugins "mailbox-vector${DYN_LIB_EXT}\n")
- SET(dynamicsJRLJapan_Plugins "dynamic${DYN_LIB_EXT}")
- SET(hrp2Dynamics_Plugins "dynamic-hrp2${DYN_LIB_EXT}")
- SET(walkGenJrl_Plugins "selector${DYN_LIB_EXT}\nwhich-foot-upper${DYN_LIB_EXT}\nnext-step${DYN_LIB_EXT}")
- 
-# --- Specific plugins list
-# Add the plugins for walkGenJrl only if the walkGenJrl is installed
-IF (_walkGenJrl_FOUND)
-  SET(walkGenJrl_Plugins "selector${DYN_LIB_EXT}\nwhich-foot-upper${DYN_LIB_EXT}\next-step${DYN_LIB_EXT}")
-ENDIF(_walkGenJrl_FOUND)
-# Add the plugins for jrl-dyn only if installed
-IF (_dynamicsJRLJapan_FOUND)
-  SET(dynamicsJRLJapan_Plugins "dynamic${DYN_LIB_EXT}")
-ENDIF (_dynamicsJRLJapan_FOUND)
-# Add the plugins for hrp2-dyn only if installed
-IF (_hrp2Dynamics_FOUND)
-  SET(hrp2Dynamics_Plugins "dynamic-hrp2${DYN_LIB_EXT}")
-ENDIF (_hrp2Dynamics_FOUND)
-IF (Boost_THREAD_FOUND)
-  SET(BoostThread_Plugins "distant-shell${DYN_LIB_EXT}\nperiodic-call-entity${DYN_LIB_EXT}")
-ENDIF (Boost_THREAD_FOUND)
-# Add the plugins for Linux only
-IF(NOT WIN32)
-#    SET(unix_Plugins "mailbox${DYN_LIB_EXT}\n")
-ENDIF(NOT WIN32)
-
-# --- GENERATE ---------------------------------------
-# ----------------------------------------------------
-# Generate the script files dependent on the install.
-
-SET(listofscripttocreate
-     ${PLUGIN_LIST_FILENAME}.cmake
-     base.cmake
-     coshell.cmake
-     dyn.cmake
-     dynmc.cmake
-     dynsmall.cmake
-     dynsmallpart1hrp2_10.cmake
-     dynsmallpart1hrp2_10_old.cmake
-     hwpg.cmake
-     hwpgpginit.cmake
-     hwpgpginitpart1hrp2_10.cmake
-     traces.cmake
-)
-
-SOT_INSTALL_SCRIPT(hwpgpginitpart2)
-
-OPTION(GENERATE_DYNFILES "Generate the dyn-files giving the model-file pathes." 1)
-IF(GENERATE_DYNFILES)
-  LIST(APPEND listofscripttocreate 
-    dynfilessmall.cmake 
-    dynfilessmallhrp2_10.cmake
-    dynfilessmallhrp2_10_old.cmake
-    simu.cmake simusmall.cmake)
-
-  # Dynfiles requires HRP2_MODEL_DIRECTORY and HRP2_CONFIG_DIRECTORY
-  IF(HRP2_MODEL_DIRECTORY)
-    IF(HRP2_CONFIG_DIRECTORY)
-	SET (HRP2_FILES_FOUND 1)
-    ELSE(HRP2_CONFIG_DIRECTORY)
-	SET (HRP2_FILES_FOUND 0)
-	MESSAGE (STATUS " HRP2_CONFIG_DIRECTORY not found. Can not create dynfiles")
-    ENDIF(HRP2_CONFIG_DIRECTORY)
-  ELSE(HRP2_MODEL_DIRECTORY)
-    SET (HRP2_FILES_FOUND 0)
-    MESSAGE (STATUS " HRP2_MODEL_DIRECTORY not found. Can not create dynfiles")
-  ENDIF(HRP2_MODEL_DIRECTORY)
-
-  IF(HRP2_FILES_FOUND)
-    LIST(APPEND listofscripttocreate dynfiles.cmake)
-  ENDIF(HRP2_FILES_FOUND)
-ENDIF(GENERATE_DYNFILES)
-
-# Generate the scripts from script.cmake.
-SOT_GENERATE_SCRIPT(${listofscripttocreate})
-
-# --- INSTALL ----------------------------------------
-SOT_INSTALL_SCRIPT(
-			acc
-			acchrp2_10
-		   calib
-		   calibhrp2_10
-		   dynsmallpart2
-		   dynsmallpart2hrp2_10
-		   force
-		   forcehrp2_10
-		   forceL
-		   forceLhrp2_10
-		   forceSimu
-		   grip
-		   griphr2_10
-		   handsAltitude
-		   hwpginitframes
-		   jointlimit
-		   pgcom
-		   selector
-		   small
-		   smallhrp2_10
-		   smallmc
-		   smallmchrp2_10
-		   traj
-		   walkreact
-		   stepping
-		   taskPosture
-		   taskPosturehrp2_10
-		   clamp-workspace
-		   sothhrp2_10
-)
-
-# --- COLLISION --------
-SOT_GENERATE_SCRIPT(collisiondetection.cmake)
-
-# --- TASKSEQ OPTIM --------
-SOT_GENERATE_SCRIPT(optimization/frigoSmall.cmake)
-SOT_INSTALL_SCRIPT(optimization/frigo)
-
-# --- STABILIZER -----------
-SOT_INSTALL_SCRIPT(stab/flex
-		   stab/flexibility
-		   stab/sylvain)
-
-# --- TELEOP ---------------
-SOT_INSTALL_SCRIPT(teleoperation/initConnec
-		   teleoperation/initConnecPhantom
-		   teleoperation/initConnecVFwave
-		   teleoperation/initConnecAll
-		   teleoperation/teleop
-		   teleoperation/teleophrp2_10
-		   teleoperation/teleopVFwave
-		   teleoperation/teleopAll
-		   teleoperation/data_epfl
-		   teleoperation/data_tum)
-
-# --- TLEARN ---------------
-SOT_GENERATE_SCRIPT(taskLearning/taskLearning.cmake)
-
-# --- UNITEST --------------
-SOT_INSTALL_SCRIPT(unittests/chrono
-		   unittests/ik_arm
-		   unittests/ik_arm_sensor
-		   unittests/ik_arm_sensor_passive
-		   unittests/ik_arm_sensor_vel
-		   unittests/ik_com
-		   unittests/ik_jl_arm)
-SOT_GENERATE_SCRIPT(unittests/testInertia.cmake
-                    unittests/chronoQr.cmake)
-
-# --- WALK -----------------
-SOT_INSTALL_SCRIPT(walking/walk
-		   walking/walkreact
-		   walkreactrobotatcwe
-		   walking/hwpgfeettasks
-		   walking/hwpgjoints
-		   walking/hwpgjointsbscw
-		   walking/hwpgrefs
-		   walking/hwpgreact
-		   walking/hwpgjointsteleop
-		   walking/startherdt
-		   walking/teststeps
-		   walking/teststeps2
-		   walking/teststeps3
-		   walking/teststeps3small)
-SOT_GENERATE_SCRIPT(walking/hwpgfeettasksrel.cmake)
-SOT_GENERATE_SCRIPT(walkreact-new.cmake)
-SOT_GENERATE_SCRIPT(walkreact-force.cmake)
-SOT_GENERATE_SCRIPT(walkreact-joystick.cmake)
+# walking
+INSTALL_GENERATED_SOT_SCRIPTS(share/dynamic-graph/script/walking
+  walking/hwpgfeettasksrel
+  )
+INSTALL_SOT_SCRIPTS(share/dynamic-graph/script/walking
+  walking/circle
+  walking/hwpgfeettasks
+  walking/hwpgjoints
+  walking/hwpgjointsbscw
+  walking/hwpgjointsteleop
+  walking/hwpgreact
+  walking/hwpgrefs
+  walking/startherdt
+  walking/startherdtsteppos
+  walking/stepping
+  walking/teststeps
+  walking/teststeps2
+  walking/teststeps3
+  walking/teststeps3small
+  walking/walk
+  walking/walkreact
+  )

@@ -1,0 +1,3 @@
+HTML_HEADER            = @CMAKE_CURRENT_SOURCE_DIR@/doc/header.html
+HTML_FOOTER            = @CMAKE_CURRENT_SOURCE_DIR@/doc/footer.html
+IMAGE_PATH             = @CMAKE_CURRENT_SOURCE_DIR@/doc/pictures

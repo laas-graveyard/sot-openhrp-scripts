@@ -1,45 +1,47 @@
-# 
-#  Copyright 
-# 
+# Copyright (C) 2010 François Bleibel, Thomas Moulard, JRL, CNRS/AIST.
+#
+# This file is part of sot-openhrp-scripts.
+# sot-openhrp-scripts is free software: you can redistribute it and/or
+# modify it under the terms of the GNU Lesser General Public License
+# as published by the Free Software Foundation, either version 3 of
+# the License, or (at your option) any later version.
+#
+# sot-openhrp-scripts is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# General Lesser Public License for more details.  You should have
+# received a copy of the GNU Lesser General Public License along with
+# sot-openhrp-scripts. If not, see <http://www.gnu.org/licenses/>.
 
+# Variables required for script generation.
+SET(SEQPLAYERTYPENAME "SequencePlayer")
 
-# --- OpenHRP 3 -----------------------------------------------------------
-IF(OPENHRP_VERSION_3)
+# Scripts list.
+SET(SCRIPTS
+  TestHWPGinSOT.py
+  TestHWPGinSOT.py
+  TestStackOfTasksV3.py
+  demoBSCWreviewmeeting.py
+  sotGeometry.py
+  sotSOTH.py
+  sotTaskLearning.py
+  sotTeleopV3.py
+  sotTeleopV3nonemodal.py
+  sotTutorial.py
+  sotWalkTask.py
+  sotWalkTaskDemoROBOTatCWE.py
+  sotWalkTaskGeometry.py
+  sot_plugin.py
+  )
 
-    SET(HRP_ROBOT_SPEC ${ROBOT} CACHE STRING "Robot name, to resolve specific path in OpenHRP.")
+FOREACH(SCRIPT ${SCRIPTS})
+  # Generate script.
+  CONFIGURE_FILE(${SCRIPT}.cmake ${SCRIPT})
 
-	SET(SOT_OPENHRP_SCRIPT_INSTALL_DIR "${OPENHRP_HOME}/Controller/IOserver/robot/${ROBOT}/script")
-	SET(SOT_OPENHRP_SCRIPT_BUILD_DIR ${CMAKE_BINARY_DIR}/script)
-
-    # --- SCRIPT GENERATION AND INSTALL -----------------------------------------------------
-    SET(SEQPLAYERTYPENAME "SequencePlayer")
-    SET(SOT_OPENHRP_SCRIPT_TO_INSTALL 
-          TestStackOfTasksV3.py.cmake
-          sotTeleopV3.py.cmake
-	  sotTeleopV3nonemodal.py.cmake
-	  sotGeometry.py.cmake
-	  sotTaskLearning.py.cmake
-	  sotWalkTask.py.cmake
-	  sotSOTH.py.cmake
-	  sotWalkTaskGeometry.py.cmake
-	  sot_plugin.py.cmake
-	  TestHWPGinSOT.py.cmake
-	  TestHWPGinSOT.py.cmake
-	  demoBSCWreviewmeeting.py.cmake
-	  sotWalkTaskDemoROBOTatCWE.py.cmake
-      sotTutorial.py.cmake
-	  )
-
-    FOREACH(SCRIPT_NAME ${SOT_OPENHRP_SCRIPT_TO_INSTALL})
-      SET(cmakeextension "\\.cmake")
-      STRING(REGEX REPLACE "${cmakeextension}$" "" TARGET_NAME ${SCRIPT_NAME})
-      CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/${SCRIPT_NAME}
-   	             ${SOT_OPENHRP_SCRIPT_BUILD_DIR}/${TARGET_NAME})
-      INSTALL(FILES ${SOT_OPENHRP_SCRIPT_BUILD_DIR}/${TARGET_NAME}
-	      DESTINATION ${SOT_OPENHRP_SCRIPT_INSTALL_DIR}
-	      PERMISSIONS OWNER_READ GROUP_READ WORLD_READ)
-   ENDFOREACH(SCRIPT_NAME)
-ELSE(OPENHRP_VERSION_3)
-	MESSAGE("Could not install OpenHRP scripts (ether this version of OpenHRP is not supported, or OpenHRP was not found")
-ENDIF(OPENHRP_VERSION_3)
-
+  # Install it.
+  INSTALL(
+    FILES ${CMAKE_CURRENT_BINARY_DIR}/${SCRIPT}
+    DESTINATION share/sot-openhrp/openhrp-script
+    PERMISSIONS OWNER_READ GROUP_READ WORLD_READ
+    )
+ENDFOREACH(SCRIPT ${SCRIPTS})
