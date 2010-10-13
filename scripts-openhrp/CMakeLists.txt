@@ -19,7 +19,6 @@ SET(SEQPLAYERTYPENAME "SequencePlayer")
 # Scripts list.
 SET(SCRIPTS
   TestHWPGinSOT.py
-  TestHWPGinSOT.py
   TestStackOfTasksV3.py
   demoBSCWreviewmeeting.py
   sotGeometry.py
@@ -36,7 +35,7 @@ SET(SCRIPTS
 
 FOREACH(SCRIPT ${SCRIPTS})
   # Generate script.
-  CONFIGURE_FILE(${SCRIPT}.cmake ${SCRIPT})
+  CONFIGURE_FILE(${SCRIPT}.cmake ${CMAKE_CURRENT_BINARY_DIR}/${SCRIPT})
 
   # Install it.
   INSTALL(
