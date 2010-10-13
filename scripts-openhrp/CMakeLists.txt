@@ -15,6 +15,8 @@
 
 # Variables required for script generation.
 SET(SEQPLAYERTYPENAME "SequencePlayer")
+SET(SOT_OPENHRP_SCRIPTS_DIR
+	"${CMAKE_INSTALL_PREFIX}/share/sot-openhrp/script")
 
 # Scripts list.
 SET(SCRIPTS
@@ -40,7 +42,7 @@ FOREACH(SCRIPT ${SCRIPTS})
   # Install it.
   INSTALL(
     FILES ${CMAKE_CURRENT_BINARY_DIR}/${SCRIPT}
-    DESTINATION share/sot-openhrp/openhrp-script
+    DESTINATION share/sot-openhrp/script
     PERMISSIONS OWNER_READ GROUP_READ WORLD_READ
     )
 ENDFOREACH(SCRIPT ${SCRIPTS})

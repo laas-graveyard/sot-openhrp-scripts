@@ -101,10 +101,10 @@ class Teleop:
     #
     # !!! teleop runs with dynsmall, NOT with standard dyn !!!
     #
-    self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/dynsmall")
+    self.SoT.sendMsg(":script import dynsmall")
 
-    self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/coshell")
-    self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/traces")
+    self.SoT.sendMsg(":script import coshell")
+    self.SoT.sendMsg(":script import traces")
 
     self.SoT.sendMsg(":script OpenHRP.refstate mc")
     self.SoT.sendMsg(":script plug OpenHRP.state dyn.position")
@@ -113,16 +113,16 @@ class Teleop:
     self.SoT.sendMsg(":script plug OpenHRP.attitude flex.sensorWorldRotation")
     self.SoT.sendMsg(":script plug sot.control OpenHRP.control")
 
-    self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/force")
-    self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/forceL")
-    self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/small")
-    self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/jointlimit")
-    self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/grip")
+    self.SoT.sendMsg(":script import force")
+    self.SoT.sendMsg(":script import forceL")
+    self.SoT.sendMsg(":script import small")
+    self.SoT.sendMsg(":script import jointlimit")
+    self.SoT.sendMsg(":script import grip")
 
     self.SoT.sendMsg(":script OpenHRP.pause")
     self.SoT.start()
 
-    self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/teleoperation/teleop")
+    self.SoT.sendMsg(":script import teleoperation/teleop")
     self.SoT.sendMsg(":script sot.clear")
 
     # def Play(self):
@@ -140,18 +140,18 @@ class Teleop:
     # --- Walking --- #
     # 
 
-    self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/hwpgpginit")
+    self.SoT.sendMsg(":script import hwpgpginit")
     time.sleep(1)
-    self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/hwpginitframes")
+    self.SoT.sendMsg(":script import hwpginitframes")
     self.SoT.sendMsg(":script plug lfo_H_wa.out OpenHRP.positionIN")
     # waitInputConfirm("Click [OK] to continue.")
 
     # def LaunchReactiveWalking(self):
     # --- Walking --- #
     # 
-    self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/walkreact")
-    self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/walkreactrobotatcwe")
-    self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/walking/hwpgfeettasksrel")
+    self.SoT.sendMsg(":script import walkreact")
+    self.SoT.sendMsg(":script import walkreactrobotatcwe")
+    self.SoT.sendMsg(":script import walking/hwpgfeettasksrel")
     # waitInputConfirm("Click [OK] to continue.")
 
 #  def StartManip(self):
@@ -162,7 +162,7 @@ class Teleop:
 #    self.SoT.sendMsg(":script stepper.thisIsZero record")
  
 #  def StartStepper(self):
-#    self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/stepping")
+#    self.SoT.sendMsg(":script import stepping")
 #    self.SoT.sendMsg(":script stepper.state start")
 
 

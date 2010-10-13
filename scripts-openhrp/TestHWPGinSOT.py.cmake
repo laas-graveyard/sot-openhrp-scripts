@@ -63,13 +63,13 @@ SoT.sendMsg(":init");
 
 #waitInputConfirm("Wait before starting.")
 
-#SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/debug")
-SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/dyn")
-SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/coshell")
-SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/traces")
+#SoT.sendMsg(":script import debug")
+SoT.sendMsg(":script import dyn")
+SoT.sendMsg(":script import coshell")
+SoT.sendMsg(":script import traces")
 
-#SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/unittests/ik_arm")
-#SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/flexibility")
+#SoT.sendMsg(":script import unittests/ik_arm")
+#SoT.sendMsg(":script import flexibility")
 
 
 # --- Use/ignore force sensors
@@ -88,7 +88,7 @@ SoT.sendMsg(":script plug sot.control OpenHRP.control")
 #SoT.sendMsg(":script plug OpenHRP.forceRARM ...")
 #SoT.sendMsg(":script plug OpenHRP.forceLLEG ...")
 
-SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/jointlimit")
+SoT.sendMsg(":script import jointlimit")
 
 SoT.sendMsg(":script OpenHRP.pause")
 SoT.start()

@@ -130,9 +130,9 @@ class WalkTask:
     #
     # !!! teleop runs with dynsmall, NOT with standard dyn !!!
     #
-    self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/dynsmall")
-    self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/coshell")
-    self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/traces")
+    self.SoT.sendMsg(":script import dynsmall")
+    self.SoT.sendMsg(":script import coshell")
+    self.SoT.sendMsg(":script import traces")
 
     self.SoT.sendMsg(":script OpenHRP.refstate mc")
     self.SoT.sendMsg(":script plug OpenHRP.state dyn.position")
@@ -141,8 +141,8 @@ class WalkTask:
     self.SoT.sendMsg(":script plug OpenHRP.attitude flex.sensorWorldRotation")
     self.SoT.sendMsg(":script plug sot.control OpenHRP.control")
 
-    self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/small")
-    self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/jointlimit")
+    self.SoT.sendMsg(":script import small")
+    self.SoT.sendMsg(":script import jointlimit")
 
     # --- Manipulation --- #
 
@@ -159,18 +159,18 @@ class WalkTask:
 
     # --- PG --- #
 
-    self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/hwpgpginit")
+    self.SoT.sendMsg(":script import hwpgpginit")
     time.sleep(1)
-    self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/hwpginitframes")
+    self.SoT.sendMsg(":script import hwpginitframes")
     self.SoT.sendMsg(":script plug lfo_H_wa.out OpenHRP.positionIN")
 
     # --- Reactive Walk --- #
 
     if(self.with_joystick == 0):
-      self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/walkreact-new")
+      self.SoT.sendMsg(":script import walkreact-new")
     else:
-      self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/walkreact-joystick")
-    self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/walking/hwpgfeettasksrel")
+      self.SoT.sendMsg(":script import walkreact-joystick")
+    self.SoT.sendMsg(":script import walking/hwpgfeettasksrel")
 
     # --- Ensure end-effector positions is computed properly --- #
 
@@ -219,7 +219,7 @@ class WalkTask:
       self.SoT.sendMsg(":script sot.push taskChest")
 
 
-    self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/stepping")
+    self.SoT.sendMsg(":script import stepping")
     self.SoT.sendMsg(":script stepper.state start")
 
   def StopStepper(self):

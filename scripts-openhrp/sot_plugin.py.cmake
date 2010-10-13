@@ -104,9 +104,9 @@ class StackOfTasksDialog:
     self.SoT.sendMsg(":init")
 
     # teleop runs with dynsmall, NOT with standard dyn
-    self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/dynsmall")
-    self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/coshell")
-    self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/traces")
+    self.SoT.sendMsg(":script import dynsmall")
+    self.SoT.sendMsg(":script import coshell")
+    self.SoT.sendMsg(":script import traces")
 
     self.SoT.sendMsg(":script plug OpenHRP.state dyn.position")
     self.SoT.sendMsg(":script plug OpenHRP.state dyn2.position")
@@ -114,19 +114,19 @@ class StackOfTasksDialog:
     self.SoT.sendMsg(":script plug OpenHRP.attitude flex.sensorWorldRotation")
     self.SoT.sendMsg(":script plug sot.control OpenHRP.control")
 
-    self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/force")
-    self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/forceL")
-    self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/small")
-    self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/jointlimit")
-    # self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/collisiondetection")
-    self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/grip")
+    self.SoT.sendMsg(":script import force")
+    self.SoT.sendMsg(":script import forceL")
+    self.SoT.sendMsg(":script import small")
+    self.SoT.sendMsg(":script import jointlimit")
+    # self.SoT.sendMsg(":script import collisiondetection")
+    self.SoT.sendMsg(":script import grip")
 
     self.SoT.sendMsg(":script OpenHRP.pause")
     self.SoT.start()
 
-    self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/hwpg")
-    self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/dynmc")
-    self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/teleoperation/teleop")
+    self.SoT.sendMsg(":script import hwpg")
+    self.SoT.sendMsg(":script import dynmc")
+    self.SoT.sendMsg(":script import teleoperation/teleop")
     self.SoT.sendMsg(":script sot.clear")
 
 
@@ -149,8 +149,8 @@ class StackOfTasksDialog:
   #
   def LaunchWalking(self):
 
-    self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/walking/hwpgjointsbscw")
-    self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/walkreact")
+    self.SoT.sendMsg(":script import walking/hwpgjointsbscw")
+    self.SoT.sendMsg(":script import walkreact")
 
     waitInputConfirm("Click [OK] to continue.")
 

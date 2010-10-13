@@ -98,10 +98,10 @@ class Teleop:
     #
     # !!! teleop runs with dynsmall, NOT with standard dyn !!!
     #
-    self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/dynsmall")
+    self.SoT.sendMsg(":script import dynsmall")
 
-    self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/coshell")
-    self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/traces")
+    self.SoT.sendMsg(":script import coshell")
+    self.SoT.sendMsg(":script import traces")
 
     self.SoT.sendMsg(":script plug OpenHRP.state dyn.position")
     self.SoT.sendMsg(":script plug OpenHRP.state dyn2.position")
@@ -110,16 +110,16 @@ class Teleop:
     self.SoT.sendMsg(":script plug flex.waistWorldPosition OpenHRP.positionIN")
     self.SoT.sendMsg(":script plug sot.control OpenHRP.control")
 
-    self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/force")
-    self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/forceL")
-    self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/small")
-    self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/jointlimit")
-    self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/grip")
+    self.SoT.sendMsg(":script import force")
+    self.SoT.sendMsg(":script import forceL")
+    self.SoT.sendMsg(":script import small")
+    self.SoT.sendMsg(":script import jointlimit")
+    self.SoT.sendMsg(":script import grip")
 
     self.SoT.sendMsg(":script OpenHRP.pause")
     self.SoT.start()
 
-    self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/teleoperation/teleop")
+    self.SoT.sendMsg(":script import teleoperation/teleop")
     self.SoT.sendMsg(":script sot.clear")
 
     # def Play(self):
@@ -137,15 +137,15 @@ class Teleop:
     # --- Walking --- #
     # 
 
-    self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/hwpgpginit")
-    # self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/walking/hwpgjointsteleop")
+    self.SoT.sendMsg(":script import hwpgpginit")
+    # self.SoT.sendMsg(":script import walking/hwpgjointsteleop")
     # waitInputConfirm("Click [OK] to continue.")
 
     # def LaunchReactiveWalking(self):
     # --- Walking --- #
     # 
-    self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/walkreact")
-    self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/pgcom")
+    self.SoT.sendMsg(":script import walkreact")
+    self.SoT.sendMsg(":script import pgcom")
     # waitInputConfirm("Click [OK] to continue.")
 
   def StopAndCleanup(self):

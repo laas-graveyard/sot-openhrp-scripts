@@ -68,14 +68,14 @@ vs.sendMsg(":init");
 
 #waitInputConfirm("Wait before starting.")
 
-#vs.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/debug")
-vs.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/dyn")
-vs.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/coshell")
-vs.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/traces")
+#vs.sendMsg(":script import debug")
+vs.sendMsg(":script import dyn")
+vs.sendMsg(":script import coshell")
+vs.sendMsg(":script import traces")
 
-vs.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/unittests/ik_arm")
-vs.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/debug")
-#vs.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/flexibility")
+vs.sendMsg(":script import unittests/ik_arm")
+vs.sendMsg(":script import debug")
+#vs.sendMsg(":script import flexibility")
 
 
 # --- Use/ignore force sensors
@@ -93,7 +93,7 @@ vs.sendMsg(":script plug sot.control OpenHRP.control")
 #vs.sendMsg(":script plug OpenHRP.forceRARM ...")
 #vs.sendMsg(":script plug OpenHRP.forceLLEG ...")
 
-vs.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/jointlimit")
+vs.sendMsg(":script import jointlimit")
 
 vs.sendMsg(":script OpenHRP.pause")
 vs.start()

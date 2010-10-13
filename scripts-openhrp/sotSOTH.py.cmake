@@ -124,9 +124,9 @@ class WalkTask:
     #
     # !!! teleop runs with dynsmall, NOT with standard dyn !!!
     #
-    self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/dynsmall")
-    self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/coshell")
-    self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/traces")
+    self.SoT.sendMsg(":script import dynsmall")
+    self.SoT.sendMsg(":script import coshell")
+    self.SoT.sendMsg(":script import traces")
 
     self.SoT.sendMsg(":script OpenHRP.refstate mc")
     self.SoT.sendMsg(":script plug OpenHRP.state dyn.position")
@@ -135,9 +135,9 @@ class WalkTask:
     self.SoT.sendMsg(":script plug OpenHRP.attitude flex.sensorWorldRotation")
     self.SoT.sendMsg(":script plug sot.control OpenHRP.control")
 
-    self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/small")
-    self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/jointlimit")
-    self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/soth")
+    self.SoT.sendMsg(":script import small")
+    self.SoT.sendMsg(":script import jointlimit")
+    self.SoT.sendMsg(":script import soth")
 
     # --- Manipulation --- #
 

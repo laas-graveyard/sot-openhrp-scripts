@@ -76,9 +76,9 @@ seq.waitInterpolation()
 
 SoT.sendMsg(":init")
 
-SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/dynsmall")
-SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/coshell")
-SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/traces")
+SoT.sendMsg(":script import dynsmall")
+SoT.sendMsg(":script import coshell")
+SoT.sendMsg(":script import traces")
 
 SoT.sendMsg(":script plug OpenHRP.state dyn.position")
 SoT.sendMsg(":script plug OpenHRP.state dyn2.position")
@@ -86,14 +86,14 @@ SoT.sendMsg(":script plug OpenHRP.attitude posKF.attitudeIN")
 SoT.sendMsg(":script plug OpenHRP.attitude flex.sensorWorldRotation")
 SoT.sendMsg(":script plug sot.control OpenHRP.control")
 
-SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/force")
-SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/forceL")
-SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/small")
-SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/jointlimit")
+SoT.sendMsg(":script import force")
+SoT.sendMsg(":script import forceL")
+SoT.sendMsg(":script import small")
+SoT.sendMsg(":script import jointlimit")
 #
-# SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/collisiondetection")
+# SoT.sendMsg(":script import collisiondetection")
 #
-SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/grip")
+SoT.sendMsg(":script import grip")
 
 SoT.sendMsg(":script OpenHRP.pause")
 SoT.start()
@@ -102,10 +102,10 @@ SoT.start()
 # before going on.
 waitInputConfirm("Chotto matte kudasai ne (click [OK] to continue).")
 
-SoT.sendMsg(":script run /home/evrard/devel/openrobots/script/hwpgpginit")
-SoT.sendMsg(":script run /home/evrard/devel/openrobots/script/hwpginitframes")
-SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/dynmc")
-SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/teleoperation/teleopAll")
+SoT.sendMsg(":script import hwpgpginit")
+SoT.sendMsg(":script import hwpginitframes")
+SoT.sendMsg(":script import dynmc")
+SoT.sendMsg(":script import teleoperation/teleopAll")
 SoT.sendMsg(":script sot.clear")
 
 # --- Play --- #
@@ -122,8 +122,8 @@ if(with_trace):
 
 waitInputConfirm("Click [OK] to launch walking.")
 
-SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/walking/hwpgjointsteleop")
-SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/walkreact")
+SoT.sendMsg(":script import walking/hwpgjointsteleop")
+SoT.sendMsg(":script import walkreact")
 
 
 # ---------------------------------------------------------------------------- #

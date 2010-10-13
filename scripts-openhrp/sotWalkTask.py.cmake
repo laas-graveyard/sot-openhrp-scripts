@@ -136,17 +136,17 @@ class WalkTask:
     # !!! teleop runs with dynsmall, NOT with standard dyn !!!
     #
     if (self.robot=="HRP214"):
-      self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/dynsmall")
+      self.SoT.sendMsg(":script import dynsmall")
     elif (self.robot=="HRP2JRL10SmallOld"):
-      self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/dynsmallpart1hrp2_10_old")
-      self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/dynsmallpart2")
+      self.SoT.sendMsg(":script import dynsmallpart1hrp2_10_old")
+      self.SoT.sendMsg(":script import dynsmallpart2")
     elif (self.robot=="HRP2JRL10Small"):
-      self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/dynsmallpart1hrp2_10")
-      self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/dynsmallpart2hrp2_10")
+      self.SoT.sendMsg(":script import dynsmallpart1hrp2_10")
+      self.SoT.sendMsg(":script import dynsmallpart2hrp2_10")
       
-    # self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/dynsmall")
-    self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/coshell")
-    self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/traces")
+    # self.SoT.sendMsg(":script import dynsmall")
+    self.SoT.sendMsg(":script import coshell")
+    self.SoT.sendMsg(":script import traces")
 
     self.SoT.sendMsg(":script OpenHRP.refstate mc")
     self.SoT.sendMsg(":script plug OpenHRP.state dyn.position")
@@ -156,11 +156,11 @@ class WalkTask:
     self.SoT.sendMsg(":script plug sot.control OpenHRP.control")
 
     if (self.robot=="HRP2JRL10Small"):
-      self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/smallhrp2_10")
+      self.SoT.sendMsg(":script import smallhrp2_10")
     else:
-      self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/small")
+      self.SoT.sendMsg(":script import small")
 
-    self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/jointlimit")
+    self.SoT.sendMsg(":script import jointlimit")
 
     # --- Manipulation --- #
 
@@ -168,42 +168,42 @@ class WalkTask:
     self.SoT.start()
 
     if (self.robot=="HRP2JRL10Small"):
-      self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/forcehrp2_10")
-      self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/forceLhrp2_10")
+      self.SoT.sendMsg(":script import forcehrp2_10")
+      self.SoT.sendMsg(":script import forceLhrp2_10")
     else:
-      self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/force")
-      self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/forceL")
+      self.SoT.sendMsg(":script import force")
+      self.SoT.sendMsg(":script import forceL")
 
-    self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/grip")
+    self.SoT.sendMsg(":script import grip")
 
     # --- Teleop --- #
     
     if (self.robot=="HRP2JRL10Small"):
-      self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/teleoperation/teleophrp2_10")
+      self.SoT.sendMsg(":script import teleoperation/teleophrp2_10")
     else:
-      self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/teleoperation/teleop")
+      self.SoT.sendMsg(":script import teleoperation/teleop")
 
     self.SoT.sendMsg(":script sot.clear")
 
     # --- PG --- #
     if (self.robot=="HRP2JRL10Small"):
-      self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/hwpgpginitpart1hrp2_10")
+      self.SoT.sendMsg(":script import hwpgpginitpart1hrp2_10")
     else:
-      self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/hwpgpginitpart1")
-    self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/hwpgpginitpart2")
+      self.SoT.sendMsg(":script import hwpgpginitpart1")
+    self.SoT.sendMsg(":script import hwpgpginitpart2")
 
 
     time.sleep(1)
-    self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/hwpginitframes")
+    self.SoT.sendMsg(":script import hwpginitframes")
     self.SoT.sendMsg(":script plug lfo_H_wa.out OpenHRP.positionIN")
 
     # --- Reactive Walk --- #
 
     if(self.with_joystick == 0):
-      self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/walkreact-new")
+      self.SoT.sendMsg(":script import walkreact-new")
     else:
-      self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/walkreact-joystick")
-    self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/walking/hwpgfeettasksrel")
+      self.SoT.sendMsg(":script import walkreact-joystick")
+    self.SoT.sendMsg(":script import walking/hwpgfeettasksrel")
 
     # --- Play --- #
 
@@ -214,17 +214,17 @@ class WalkTask:
       self.SoT.sendMsg(":script tr.start")
 
     # --- Misc --- #
-    self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/clamp-workspace")
+    self.SoT.sendMsg(":script import clamp-workspace")
     if(self.with_altitude):
-      self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/handsAltitude")
+      self.SoT.sendMsg(":script import handsAltitude")
     if(self.with_posture):
       if (self.robot=="HRP2JRL10Small"):
-        self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/taskPosturehrp2_10")
+        self.SoT.sendMsg(":script import taskPosturehrp2_10")
       else:
-        self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/taskPosture")
+        self.SoT.sendMsg(":script import taskPosture")
 
     if(self.with_collision):
-      self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/collisiondetection")
+      self.SoT.sendMsg(":script import collisiondetection")
 
     # --- Ensure end-effector positions is computed properly --- #
 
@@ -306,7 +306,7 @@ class WalkTask:
   # Stepper start and stop
   # --------------------------------------------------------------------------------
   def StartStepper(self):
-    self.SoT.sendMsg(":script run ${CMAKE_INSTALL_PREFIX}/script/stepping")
+    self.SoT.sendMsg(":script import stepping")
     self.SoT.sendMsg(":script stepper.state start")
 
   def StopStepper(self):
