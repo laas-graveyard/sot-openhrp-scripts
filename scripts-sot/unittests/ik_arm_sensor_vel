@@ -29,7 +29,7 @@ sot.clear
 sot.push task
 # sot.push taskTwofeet
 
-# run script/flex
+# import flex
 
 tr.clear
 tr.add task.task
