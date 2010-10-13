@@ -39,6 +39,10 @@ ENDIF(NOT HRP2_CONFIG_DIRECTORY)
 # Variables required for script generation.
 SET(DYN_LIB_EXT ${CMAKE_SHARED_LIBRARY_SUFFIX})
 
+SET(DG_SCRIPT_DIR ${CMAKE_INSTALL_PREFIX}/share/dynamic-graph/script)
+SET(PLUGIN_LIST_FILENAME plugin.txt)
+
+
 #  Where is the trace repository?
 #  FIXME: this is wrong. Trace output should go to a better place.
 IF(WIN32)
