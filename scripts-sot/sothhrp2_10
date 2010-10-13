@@ -1,5 +1,5 @@
-run /home/nmansard/src/StackOfTasks/script/dynsmall
-run /home/nmansard/src/StackOfTasks/script/tracesDebug
+import dynsmall
+import tracesDebug
 
 plug sot.control OpenHRP.control
 plug OpenHRP.state dyn.position
@@ -7,7 +7,7 @@ plug OpenHRP.state dyn2.position
 plug OpenHRP.attitude posKF.attitudeIN
 plug OpenHRP.attitude flex.sensorWorldRotation
 
-run /home/nmansard/src/StackOfTasks/script/small
+import small
 
 # --- TASK UNILATERAL ---
 loadPlugin task-unilateral.so
@@ -55,9 +55,9 @@ proc show
 -> jn.out
 endproc
 
-# --- Stack of tasks --- 
-# --- Stack of tasks --- 
-# --- Stack of tasks --- 
+# --- Stack of tasks ---
+# --- Stack of tasks ---
+# --- Stack of tasks ---
 loadPlugin sot-h.so
 new SOTH soth
 soth.nbJoints 38

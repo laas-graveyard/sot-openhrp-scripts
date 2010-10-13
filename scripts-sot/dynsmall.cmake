@@ -1,8 +1,8 @@
-run ${CMAKE_INSTALL_PREFIX}/script/base
+import base
 echo Creating the small dynamic
 new DynamicHrp2 dyn
 new DynamicHrp2 dyn2
-run ${CMAKE_INSTALL_PREFIX}/script/dynfilessmall
+import dynfilessmall
 dyn2.parse
 new VectorConstant zero
 zero.resize 36
@@ -23,8 +23,8 @@ plug dyn2ffposzero.out dyn2.ffposition
 
 dyn2.createOpPoint 0 22
 dyn2.createOpPoint lh 29
-dyn2.createOpPoint rleg 6 
-dyn2.createOpPoint lleg 12 
+dyn2.createOpPoint rleg 6
+dyn2.createOpPoint lleg 12
 dyn2.createOpPoint chest 14
 
 dyn2.setProperty ComputeVelocity               false
@@ -61,7 +61,7 @@ plug dyn2.lleg posKF.contact
 plug dyn2.chest posKF.position
 posKF.fromSensor true
 
-# --- DYN With true posFF	
+# --- DYN With true posFF
 dyn.parse
 plug zero.out dyn.velocity
 plug zero.out dyn.acceleration
@@ -76,8 +76,8 @@ plug flex.waistWorldPoseRPY dyn.ffposition
 dyn.createOpPoint 0 22
 # dyn.createOpPoint 0 34
 # dyn.createOpPoint 0 0
-dyn.createOpPoint rleg 6 
-dyn.createOpPoint lleg 12 
+dyn.createOpPoint rleg 6
+dyn.createOpPoint lleg 12
 
 new FeaturePoint6d p6
 new FeaturePoint6d p6d
@@ -119,7 +119,7 @@ eye3.[] 2 0 1
 set p6.selec 000111
 p6.frame current
 
-# --- COM 
+# --- COM
 dyn.setComputeCom 1
 # dyn.setProperty ComputeVelocity true
 # dyn.setProperty ComputeMomentum true
@@ -127,9 +127,9 @@ dyn.setComputeCom 1
 
 new FeatureGeneric featureCom
 plug dyn.com featureCom.errorIN
-plug dyn.Jcom featureCom.jacobianIN 
+plug dyn.Jcom featureCom.jacobianIN
 # set featureCom.selec 111
-	
+
 new FeatureGeneric featureComDes
 # set featureComDes.errorIN [2](0,-0)
 set featureCom.sdes featureComDes
@@ -197,7 +197,7 @@ jacobianLegs.[] 8 14 1
 jacobianLegs.[] 9 15 1
 jacobianLegs.[] 10 16 1
 jacobianLegs.[] 11 17 1
-plug jacobianLegs.out featureLegs.jacobianIN 
+plug jacobianLegs.out featureLegs.jacobianIN
 
 new VectorConstant vectorLegs
 vectorLegs.resize 12
@@ -210,9 +210,9 @@ set taskLegs.controlGain 1
 
 # --- TWOFEET
 new FeaturePoint6dRelative featureTwofeet
-plug dyn.Jrleg  featureTwofeet.Jq 
+plug dyn.Jrleg  featureTwofeet.Jq
 plug dyn.Jlleg  featureTwofeet.JqRef
-plug dyn.rleg  featureTwofeet.position 
+plug dyn.rleg  featureTwofeet.position
 plug dyn.lleg  featureTwofeet.positionRef
 # set featureTwofeet.error [6](0,0,0,0,0,0)
 
@@ -245,4 +245,4 @@ new VectorConstant zeroCom
 zeroCom.resize 36
 zeroCom.fill 0
 
-dyn.createOpPoint Waist 0 
+dyn.createOpPoint Waist 0

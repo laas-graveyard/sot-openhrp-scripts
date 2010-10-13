@@ -3,7 +3,7 @@ OpenHRP.periodicCall addSignal dyn.0
 flex.fromSensor true
 
 
-# --- MOTION --- 
+# --- MOTION ---
 new FeatureGeneric j
 new FeatureGeneric jdes
 plug dyn.position j.errorIN
@@ -11,7 +11,7 @@ set j.sdes jdes
 new MatrixConstant eye36
 eye36.resize 36 36
 eye36.eye
-plug eye36.out j.jacobianIN 
+plug eye36.out j.jacobianIN
 set j.selec 111000000000000000000000000
 new Task taskJ
 taskJ.add j

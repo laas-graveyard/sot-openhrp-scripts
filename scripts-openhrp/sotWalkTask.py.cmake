@@ -17,7 +17,7 @@ class WalkTask:
   def __init__(self,name):
 
     self.GEOMETRIC_MODE = 0
-    self.Name = name 
+    self.Name = name
     self.with_trace = 1
     self.with_altitude = 0
     self.with_teleop = 0
@@ -28,7 +28,7 @@ class WalkTask:
     self.with_collision = 0
     self.with_homotopy = 0
     self.with_joystick = 0
-    
+
     self.robot = "HRP2JRL10Small"
     # ------------------------------------------------------------------------------
     # --- LOAD THE PLUGINS ---------------------------------------------------------
@@ -99,19 +99,19 @@ class WalkTask:
     #rhand_a = "0.0 0.0 0.0 0.0 0.0"
     #lhand_a = "0.0 0.0 0.0 0.0 0.0"
 
-    # Half sitting 
+    # Half sitting
     if ((self.robot=="HRP2JRL10SmallOld") or (self.robot=="HRP2JRL10Small")):
       rarm_a = "15 -10 0 -30 0 0 0 10"
       larm_a = "15  10 0 -30 0 0 0 10"
     elif (self.robot=="HRP214"):
       rarm_a = "15 -10 0 -30 0 0 10"
       larm_a = "15  10 0 -30 0 0 10"
-    
-  
+
+
     # New Germany
     #rarm_a = "33 -10 0 -120 -10 0 10" # <-- ballrose: "10 -10 -10 -80 0 -0 0", dunnowhat: "10 -10 -10 -70 0 -0 10"
     #larm_a = "33  10 0 -120  10 0 10" # <-- ballrose: "35 5 0 -20.0 0 0 10.0", dunnowhat: "10  10 10 -70 0 0 10"
-   
+
     # Old Germany
     # rarm_a = "10 -18 0 -100 -18 0 10"
     # larm_a = "10  18 0 -100  18 0 10"
@@ -143,7 +143,7 @@ class WalkTask:
     elif (self.robot=="HRP2JRL10Small"):
       self.SoT.sendMsg(":script import dynsmallpart1hrp2_10")
       self.SoT.sendMsg(":script import dynsmallpart2hrp2_10")
-      
+
     # self.SoT.sendMsg(":script import dynsmall")
     self.SoT.sendMsg(":script import coshell")
     self.SoT.sendMsg(":script import traces")
@@ -177,7 +177,7 @@ class WalkTask:
     self.SoT.sendMsg(":script import grip")
 
     # --- Teleop --- #
-    
+
     if (self.robot=="HRP2JRL10Small"):
       self.SoT.sendMsg(":script import teleoperation/teleophrp2_10")
     else:
@@ -209,7 +209,7 @@ class WalkTask:
 
     self.SoT.sendMsg(":script OpenHRP.reinit from mc")
     self.SoT.sendMsg(":script OpenHRP.play")
-    
+
     if(self.with_trace):
       self.SoT.sendMsg(":script tr.start")
 
@@ -300,7 +300,7 @@ class WalkTask:
 
     self.SoT.sendMsg(":script sot.push taskHead")
     self.SoT.sendMsg(":script stepcomp.thisIsZero record")
- 
+
 
   # --------------------------------------------------------------------------------
   # Stepper start and stop
@@ -352,9 +352,9 @@ class WalkTask:
     self.ms.sendMsg(":destroy SoT")
     self.ms.sendMsg(":unload StackOfTasks")
 
-    # --- 
+    # ---
     # --- LOGS
-    # --- 
+    # ---
     # waitInputConfirm("Click [OK] to log")
     self.log.stop()
     self.log.save("WalkTask")

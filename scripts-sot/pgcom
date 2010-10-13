@@ -67,7 +67,7 @@ tr.start
 
 # set taskCom.controlGain 15
 
-# --- 
+# ---
 # plug flex.waistWorldPoseRPY dyn.ffposition
-# tr.add dyn.ffposition 
+# tr.add dyn.ffposition
 set featureTwofeetDes.position [4,4] ((1,0,0,0),(0,1,0,-0.19),(0,0,1,-0.548702),(0,0,0,1))

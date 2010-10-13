@@ -28,7 +28,7 @@ unplug posKF.attitudeIN
 tr.add dyn.position
 
 
-proc next 
+proc next
 -> t.[] 2 1.35
 -> proc next
 -> -> t.[] 2 .9

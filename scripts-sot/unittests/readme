@@ -15,7 +15,7 @@ behind its jl. Check that the JointLimit is enforced.
 (3) Basic IK + sensor passive
 -----------------------------
 Same test as (1). The angle of the flexibility and drift
-are computed from the rotation sensor, and logged. 
+are computed from the rotation sensor, and logged.
 Two points to consider:
 - the noise of the sensor when the robot waist is not moving.
 - vibration in the sensor measurement when the flexibility is exited
@@ -47,11 +47,11 @@ Main point to consider:
 (1) Basic COM-XY
 ----------------
 No sensor feedback. Both feet on the ground.
-Task twofeet has priority. Task Com in second range: dim 2, Z is unactive. 
+Task twofeet has priority. Task Com in second range: dim 2, Z is unactive.
 
 (2) Basic COM-XY + sensor
 -------------------------
-Same as (1) but with a feedback on the rotation sensor used to compute the position 
+Same as (1) but with a feedback on the rotation sensor used to compute the position
 of the waist.
 
 

@@ -80,7 +80,7 @@ new Multiply<vector,matrixHomo> pg_comref
 plug pg.comref pg_comref.in1
 plug lfo_H_pg.out pg_comref.in2
 
-# --- Selector of Com Ref and Foot Ref --- 
+# --- Selector of Com Ref and Foot Ref ---
 new Selector PGselec
 PGselec.reset 2 1
 PGselec.create vector scomref 0
@@ -113,7 +113,7 @@ set taskCom.controlGain 1
 
 # --- Handling the two feet ---
 
-# switch between the two ref 
+# switch between the two ref
 # depending on who is in contact with the floor.
 
 new Selector RefFeetRelselec
@@ -211,12 +211,12 @@ legs.clear
 legs.add RefFeetRelselec.JFoot
 sot.addConstraint legs
 
-# -- SOT: PUSHING THE TASKS 
+# -- SOT: PUSHING THE TASKS
 
 # -- CoM
 sot.push taskComPD
 
-# -- Legs 
+# -- Legs
 sot.push taskTwofeet
 
 # -- Waist
@@ -309,8 +309,8 @@ tr.start
 
 # set taskCom.controlGain 15
 
-# --- 
-# tr.add dyn.ffposition 
+# ---
+# tr.add dyn.ffposition
 # stepper.state start
 
 

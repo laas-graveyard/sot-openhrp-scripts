@@ -29,7 +29,7 @@ plug ffddot.out dyn.ffacceleration
 dyn.setProperty ComputeBackwardDynamics true
 dyn.createAcceleration acc0 22
 
-# --- KALMAN? --- 
+# --- KALMAN? ---
 new Kalman kalmanFF
 plug ffposition.out kalmanFF.Ymes
 
@@ -82,7 +82,7 @@ plug dyn.acc0 forceCompRH.acceleration
 plug forceCompRH.momentum forceCompRH.momentumIN
 
 
-# --- INTERTIA 
+# --- INTERTIA
 set forceCompRH.inertiaJoint [6,6]((1.146470,0.000000,0.000000,0.000000,-0.107137,-0.001231),(0.000000,1.146470,0.000000,0.107137,0.000000,0.004141),(0.000000,0.000000,1.146470,0.001231,-0.004141,-0.000000),(0.000000,0.107137,0.001231,0.013376,-0.000029,0.000544),(-0.107137,-0.000000,-0.004141,-0.000029,0.013432,0.000106),(-0.001231,0.004141,0.000000,0.000544,0.000106,0.000964))
 set forceCompRH.sensorJoint [3](-0.005,0,0.05925)
 

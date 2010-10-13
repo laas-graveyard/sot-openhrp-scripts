@@ -26,8 +26,8 @@ set featureComDes.errorIN [3](0.01,0.0153,0.702736)
 
 # set featureComDes.errorIN [3](0.000,-0.00,.6)
 
-OpenHRP.periodicCall addSignal contactTRwaist.out 
-OpenHRP.periodicCall addSignal diffAttitudeVect.out 
+OpenHRP.periodicCall addSignal contactTRwaist.out
+OpenHRP.periodicCall addSignal diffAttitudeVect.out
 
 
 # Leve le pied
@@ -67,7 +67,7 @@ tr.add zmp.zmpref
 # posKF.fromSensor false
 
 new Dynamic dynSL
-dynSL.setFiles  ${OPENHRP_HOME}/etc/HRP2JRL/ HRP2JRLmain.wrl ${OPENHRP_HOME}/Controller/IOserver/robot/HRP2JRL/bin/HRP2Specificities.xml ${OPENHRP_HOME}/Controller/IOserver/robot/HRP2JRL/bin/HRP2LinkJointRank.xml 
+dynSL.setFiles  ${OPENHRP_HOME}/etc/HRP2JRL/ HRP2JRLmain.wrl ${OPENHRP_HOME}/Controller/IOserver/robot/HRP2JRL/bin/HRP2Specificities.xml ${OPENHRP_HOME}/Controller/IOserver/robot/HRP2JRL/bin/HRP2LinkJointRank.xml
 dynSL.parse
 new WaistPoseFromSensorAndContact posKFSL
 plug dyn2.lleg posKFSL.contact
@@ -85,7 +85,7 @@ plug dynSL.com featureCom.errorIN
 dynSL.createPosition waist 0
 plug dynSL.waist zmp.waist
 
-plug dynSL.Jcom featureCom.jacobianIN 
+plug dynSL.Jcom featureCom.jacobianIN
 
 proc step
 # -> unplug zmp.waist
@@ -93,7 +93,7 @@ proc step
 -> set task.controlGain 1.
 -> t.[] 0 .3
 -> t.[] 2 .15
--> proc step 
+-> proc step
 -> -> t.[] 2 .007
 -> -> set task.controlGain .6
 -> endproc

@@ -6,15 +6,15 @@ flex.fromSensor false
 # --- TASKS --------------------------------------------------
 # --- TASKS --------------------------------------------------
 
-# --- TASK FORCE ------------------------------------- 
-# --- TASK FORCE ------------------------------------- 
-# --- TASK FORCE ------------------------------------- 
+# --- TASK FORCE -------------------------------------
+# --- TASK FORCE -------------------------------------
+# --- TASK FORCE -------------------------------------
 new Add<vector> addForce
 
-new HomoToRotation waistRh 
+new HomoToRotation waistRh
 plug dyn.0 waistRh.in
 
-# new HomoToRotation waistRleg 
+# new HomoToRotation waistRleg
 # plug dyn.lleg waistRleg.in
 
 new Inverse<matrixrotation> hRwaist
@@ -31,7 +31,7 @@ set Rwt0.in2 [3](0,0,0)
 new HomoToTwist Vw
 plug Rwt0.out Vw.in
 new Multiply<vector,matrix> fgermany
-plug Vw.out fgermany.in2 
+plug Vw.out fgermany.in2
 plug fgermany.out addForce.in1
 
 # This is to transform sensor force to world coordinates
@@ -50,7 +50,7 @@ endproc
 
 proc fgermany(disable)
 -> zerohandswaist
--> plug spr_force.out forceInt.force 
+-> plug spr_force.out forceInt.force
 endproc
 
 # fgermany(enable)
@@ -64,7 +64,7 @@ proc chest(disable)
 endproc
 
 
-# --- TASK HEAD ------------------------------------- 
+# --- TASK HEAD -------------------------------------
 new Selec<vector> posHead
 plug OpenHRP.state posHead.in
 posHead.selec 20 22
@@ -72,7 +72,7 @@ posHead.selec 20 22
 new FeatureGeneric featureHead
 new FeatureGeneric featureHeadDes
 set featureHead.jacobianIN [2,36]((0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0),(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0))
-plug posHead.out featureHead.errorIN 
+plug posHead.out featureHead.errorIN
 set featureHead.sdes featureHeadDes
 new Task taskHead
 taskHead.add featureHead
@@ -131,7 +131,7 @@ gainHeadWB.set 10 .1 100
 plug taskHeadWB.error gainHeadWB.error
 plug gainHeadWB.gain taskHeadWB.controlGain
 
-# --- GRIPER ------------------------------------- 
+# --- GRIPER -------------------------------------
 # plug coshell.gripSOUT featureGripDes.errorIN
 plug OpenHRP.ptorque gripdes.torqueFullIN
 OpenHRP.withPseudoTorque 1
@@ -144,17 +144,17 @@ protectJl.resize 36
 protectJl.fill 0.97
 
 new Multiply<vector> upperJl
-plug protectJl.out upperJl.in2 
+plug protectJl.out upperJl.in2
 
 new Multiply<vector> lowerJl
-plug protectJl.out lowerJl.in2 
+plug protectJl.out lowerJl.in2
 
 squeeze jointlimit.upperJl upperJl.in1 upperJl.out
 squeeze jointlimit.lowerJl lowerJl.in1 lowerJl.out
 
 set taskJl.controlGain 2
 
-# --- RETURN POS ------------------------------------- 
+# --- RETURN POS -------------------------------------
 # dyn.0 = wRh. Inverse = h0Rw
 new Inverse<matrixhomo>  poseInit
 plug dyn.0 poseInit.in
@@ -175,7 +175,7 @@ plug wRh0.out wrtPoseInitinShoulder.in2
 new MatrixHomoToPoseQuaternion wrtPoseInitQuat
 plug wrtPoseInitinShoulder.out wrtPoseInitQuat.in
 
-# --- RETURN VEL ------------------------------------- 
+# --- RETURN VEL -------------------------------------
 
 # ------------
 # version 1 uses rotation matrices
@@ -258,14 +258,14 @@ vrh.selec2 0 3
 compute vrh.out
 
 
-# --- TASK FORCE LEFT ------------------------------------- 
-# --- TASK FORCE LEFT ------------------------------------- 
-# --- TASK FORCE LEFT ------------------------------------- 
+# --- TASK FORCE LEFT -------------------------------------
+# --- TASK FORCE LEFT -------------------------------------
+# --- TASK FORCE LEFT -------------------------------------
 
 
 new Add<vector> addForceLH
 
-new HomoToRotation waistLh 
+new HomoToRotation waistLh
 plug dyn.lh waistLh.in
 
 new Inverse<matrixrotation> lhRwaist
@@ -278,7 +278,7 @@ new HomoToTwist Vwlh
 plug Rwtlh.out Vwlh.in
 
 new Multiply<vector,matrix> fgermanyLH
-plug Vwlh.out fgermanyLH.in2 
+plug Vwlh.out fgermanyLH.in2
 # plug coshell.forceLSOUT fgermanyLH.in1
 
 plug fgermanyLH.out addForceLH.in1
@@ -289,7 +289,7 @@ endproc
 
 proc fgermanyLH(disable)
 -> zerohandswaistL
--> plug spr_forceL.out forceIntLH.force 
+-> plug spr_forceL.out forceIntLH.force
 endproc
 
 # fgermanyLH(enable)
@@ -302,7 +302,7 @@ proc chestLH(disable)
 -> taskForceLH.unselec 12:13
 endproc
 
-# --- RETURN POS ------------------------------------- 
+# --- RETURN POS -------------------------------------
 # dyn.0 = wRh. Inverse = h0Rw
 new Inverse<matrixhomo>  poseInitLH
 plug dyn.lh poseInitLH.in
@@ -369,15 +369,15 @@ endproc
 # -> squeeze p3LH.errorIN addp6LH.in2 addp6LH.out
 # endproc
 # proc goinit(stop,lh)
-# -> plug forceIntLH.velocity p3LH.errorIN 
+# -> plug forceIntLH.velocity p3LH.errorIN
 # endproc
 # proc goinit(start,both)
 # -> squeeze p3.errorIN addp6.in2 addp6.out
 # -> squeeze p3LH.errorIN addp6LH.in2 addp6LH.out
 # endproc
 # proc goinit(stop,both)
-# -> plug forceInt.velocity p3.errorIN 
-# -> plug forceIntLH.velocity p3LH.errorIN 
+# -> plug forceInt.velocity p3.errorIN
+# -> plug forceIntLH.velocity p3LH.errorIN
 # endproc
 
 # --- PROC --------------------------------------------------
@@ -464,9 +464,9 @@ proc reducespringstiffness
 endproc
 
 
-# --- IN SIMU 
-# --- IN SIMU 
-# --- IN SIMU 
+# --- IN SIMU
+# --- IN SIMU
+# --- IN SIMU
 # set forceCompRH.precompensation [6](0,0,0,0,0,0)
 # set forceCompRH.handRsensor [3,3]((0,-1,0),(1,0,0),(0,0,1))
 # set forceCompRH.sensorCom [3](0,0,-0.05)
@@ -477,7 +477,7 @@ endproc
 # Position Sensor [ 0.005 0   -0.05925 ]
 # Sensor->com -0.0009    0.0012   -0.0479
 # set forceCompRH.sensorCom [3](-0.0009,0.0012,-0.0479)
-# After "calibration" 
+# After "calibration"
 # set forceCompRH.sensorCom [3](-0.0009,0.000,-0.03428)
 
 # set forceCompRH.gravity [6](0.000000,0.000000,-0,0.000000,0.000000,0.000000)
@@ -503,7 +503,7 @@ set friction.in [6](180,180,180,5,5,5)
 # OpenHRP.periodicCall addSignal necklimit.jointLimited
 
 # plug massRH.massInverse forceIntLH.massInverse
-# 
+#
 
 # proc show
 # -> get forceIntLH.force
@@ -511,7 +511,7 @@ set friction.in [6](180,180,180,5,5,5)
 # -> get forceInt.force
 # -> get forceInt.velocity
 # endproc
-# 
+#
 
 # set taskForceLH.controlSelec 11111100000000000000000000000
 

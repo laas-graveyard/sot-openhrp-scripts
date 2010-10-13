@@ -2,7 +2,7 @@ new TracerRealTime tr
 tr.bufferSize 10485760
 
 tr.open  ${TRACE_REPOSITORY} jl_ .dat
-OpenHRP.periodicCall addSignal tr.triger	
+OpenHRP.periodicCall addSignal tr.triger
 
 proc resettr()
 -> tr.stop

@@ -67,7 +67,7 @@ stepper.initPg pg
 # -> squeeze p3.errorIN addp6.in2 addp6.out
 # endproc
 # proc goinit(stop,rh)
-# -> plug forceInt.velocity p3.errorIN 
+# -> plug forceInt.velocity p3.errorIN
 # endproc
 
 

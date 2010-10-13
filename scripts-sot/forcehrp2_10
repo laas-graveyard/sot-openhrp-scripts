@@ -63,7 +63,7 @@ new Selec<matrix> JRHact
 JRHact.jselec 6 38
 JRHact.iselec 0 6
 plug dyn.J0 JRHact.in
-plug JRHact.out massRH.jacobian 
+plug JRHact.out massRH.jacobian
 
 # plug Aact.out massRH.inertia
 plug Ainv.out massRH.inertiaInverse
@@ -86,7 +86,7 @@ plug dyn.J0 p3.jacobianIN
 new Task taskForce
 taskForce.add p3
 set p3.selec ...1
-set p3.sdes 
+set p3.sdes
 plug forceInt.velocity p3.errorIN
 set taskForce.controlGain -.4
 p3.dimDefault 6
@@ -158,7 +158,7 @@ plug p3.jacobian JRHact.in
 # # set taskForce.controlGain -.4
 # set friction.in [3](20,20,20)
 # set taskForce.controlGain -.2
-# 
+#
 dyn.debugInertia grip
 
 
@@ -251,7 +251,7 @@ t.[] 2 .65
 # Position Sensor [ 0.005 0   -0.05925 ]
 # Sensor->com -0.0009    0.0012   -0.0479
 # set forceCompRH.sensorCom [3](-0.0009,0.0012,-0.0479)
-# After "calibration" 
+# After "calibration"
 # set forceCompRH.sensorCom [3](-0.0007,-0.0002,-0.0341)
 # set forceCompRH.gravity [6](0.000000,0.000000,-11.2417,0.000000,0.000000,0.000000)
 

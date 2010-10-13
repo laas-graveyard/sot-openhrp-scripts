@@ -5,7 +5,7 @@ from hrp import *
 
 class Teleop:
   def __init__(self,name):
-    self.Name = name 
+    self.Name = name
     # ---------------------------------------------------------------------------- #
     # --- LOADING THE PLUGINS ---------------------------------------------------- #
     # ---------------------------------------------------------------------------- #
@@ -117,14 +117,14 @@ class Teleop:
 
     self.SoT.sendMsg(":script OpenHRP.reinit from mc")
     self.SoT.sendMsg(":script OpenHRP.play")
-    
+
     if(self.with_trace):
       self.SoT.sendMsg(":script tr.start")
     waitInputConfirm("click [OK] to continue.")
 
   def LaunchWalking(self):
     # --- Walking --- #
-    # 
+    #
 
     self.SoT.sendMsg(":script import hwpg")
     self.SoT.sendMsg(":script import walking/hwpgjointsteleop")
@@ -154,9 +154,9 @@ class Teleop:
     self.ms.sendMsg(":destroy SoT")
     self.ms.sendMsg(":unload StackOfTasks")
 
-    # --- 
+    # ---
     # --- LOGS
-    # --- 
+    # ---
     # waitInputConfirm("Click [OK] to log")
     self.log.stop()
     self.log.save("sim")

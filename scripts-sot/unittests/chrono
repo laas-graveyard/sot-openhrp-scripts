@@ -1,5 +1,5 @@
-# run script/simu
-# run script/simusmall
+# import simu
+# import simusmall
 
 sot.gradient rm
 

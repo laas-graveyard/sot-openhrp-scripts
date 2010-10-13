@@ -48,9 +48,9 @@ log.add("st")
 log.sendMsg(":max-length 80")
 log.start()
 
-# --- 
+# ---
 # --- SPECIFIC TO WALKING
-# --- 
+# ---
 hstsetup.stsetup(st)
 kf.start()
 st.start()
@@ -121,9 +121,9 @@ ms.sendMsg(":unload StackOfTasks")
 waitInputConfirm("Log and script finished ")
 
 
-# --- 
+# ---
 # --- LOGS
-# --- 
+# ---
 #waitInputConfirm("Wait before log")
 log.stop()
 log.save("sim")

@@ -24,5 +24,4 @@ OpenHRP.periodicCall addSignal forceCompLH.torsor
 
 plug sot.control OpenHRP.control
 
-run /home/nmansard/src/StackOfTasks/script/forceSimu
-
+import forceSimu

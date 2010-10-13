@@ -5,10 +5,10 @@ from hrp import *
 
 #
 # class StackOfTasksDialog
-# 
+#
 # Non modal dialog box with basic control buttons to initialize
 # the SoT framework and link it with OpenHRP.
-# 
+#
 class StackOfTasksDialog:
 
   #
@@ -71,7 +71,7 @@ class StackOfTasksDialog:
   #
   def GoInitialPosition(self):
 
-    # Half sitting 
+    # Half sitting
     rleg_a  = "0 0 -26 50 -24 0"
     lleg_a  = "0 0 -26 50 -24 0"
     chest_a = "0 0"
@@ -87,7 +87,7 @@ class StackOfTasksDialog:
     # New Germany
     # rarm_a = "33 -10 0 -120 -10 0 10" # <-- ballrose: "10 -10 -10 -80 0 -0 0", dunnowhat: "10 -10 -10 -70 0 -0 10"
     # larm_a = "33  10 0 -120  10 0 10" # <-- ballrose: "35 5 0 -20.0 0 0 10.0", dunnowhat: "10  10 10 -70 0 0 10"
-   
+
     # Old Germany
     # rarm_a = "10 -18 0 -100 -18 0 10"
     # larm_a = "10  18 0 -100  18 0 10"
@@ -137,7 +137,7 @@ class StackOfTasksDialog:
 
     self.SoT.sendMsg(":script OpenHRP.reinit from mc")
     self.SoT.sendMsg(":script OpenHRP.play")
-    
+
     if(self.with_trace):
       self.SoT.sendMsg(":script tr.start")
 

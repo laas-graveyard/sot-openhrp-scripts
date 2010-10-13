@@ -1,4 +1,4 @@
-        
+
 # Specific to HRP-2
 import hrp
 import hstsetup
@@ -65,19 +65,19 @@ vs.sendMsg(":init");
 
 #waitInputConfirm("Wait before script loading.")
 
-vs.sendMsg(":script run /home/nmansard/src//StackOfTasks/script/dyn")
-vs.sendMsg(":script run /home/nmansard/src//StackOfTasks/script/coshell")
-vs.sendMsg(":script run /home/nmansard/src//StackOfTasks/script/traces")
+vs.sendMsg(":script import dyn")
+vs.sendMsg(":script import coshell")
+vs.sendMsg(":script import traces")
 
 
-#vs.sendMsg(":script run /home/nmansard/src//StackOfTasks/script/unittests/ik_arm")
-#vs.sendMsg(":script run /home/nmansard/src//StackOfTasks/script/unittests/ik_jl_arm")
-#vs.sendMsg(":script run /home/nmansard/src//StackOfTasks/script/unittests/ik_arm_sensor_passive")
-#vs.sendMsg(":script run /home/nmansard/src//StackOfTasks/script/unittests/ik_arm_sensor")
-#vs.sendMsg(":script run /home/nmansard/src//StackOfTasks/script/unittests/ik_arm_sensor_vel")
-#vs.sendMsg(":script run /home/nmansard/src//StackOfTasks/script/unittests/ik_com")
-#vs.sendMsg(":script run /home/nmansard/src//StackOfTasks/script/unittests/ik_com_sensor")
-#vs.sendMsg(":script run /home/nmansard/src//StackOfTasks/script/flexibility")
+#vs.sendMsg(":script import unittests/ik_arm")
+#vs.sendMsg(":script import unittests/ik_jl_arm")
+#vs.sendMsg(":script import unittests/ik_arm_sensor_passive")
+#vs.sendMsg(":script import unittests/ik_arm_sensor")
+#vs.sendMsg(":script import unittests/ik_arm_sensor_vel")
+#vs.sendMsg(":script import unittests/ik_com")
+#vs.sendMsg(":script import unittests/ik_com_sensor")
+#vs.sendMsg(":script import flexibility")
 
 # --- Use/ignore force sensors
 #vs.sendMsg(":setForces 0 1")
@@ -127,9 +127,9 @@ vs.sendMsg(':profile')
 ms.sendMsg(":destroy vs")
 ms.sendMsg(":unload StackOfTasks")
 
-# --- 
+# ---
 # --- LOGS
-# --- 
+# ---
 waitInputConfirm("Wait before log")
 log.stop()
 log.save("sim")

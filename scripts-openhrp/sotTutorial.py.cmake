@@ -17,7 +17,7 @@ class WalkTask:
   def __init__(self,name):
 
     self.GEOMETRIC_MODE = 0
-    self.Name = name 
+    self.Name = name
     self.with_trace = 0
     self.with_altitude = 1
     self.with_teleop = 0
@@ -99,14 +99,14 @@ class WalkTask:
     #rhand_a = "0.0 0.0 0.0 0.0 0.0"
     #lhand_a = "0.0 0.0 0.0 0.0 0.0"
 
-    # Half sitting 
+    # Half sitting
     #rarm_a = "15 -10 0 -30 0 0 10"
     #larm_a = "15  10 0 -30 0 0 10"
-  
+
     # New Germany
     #rarm_a = "33 -10 0 -120 -10 0 10" # <-- ballrose: "10 -10 -10 -80 0 -0 0", dunnowhat: "10 -10 -10 -70 0 -0 10"
     #larm_a = "33  10 0 -120  10 0 10" # <-- ballrose: "35 5 0 -20.0 0 0 10.0", dunnowhat: "10  10 10 -70 0 0 10"
-   
+
     # Old Germany
     rarm_a = "10 -18 0 -100 -18 0 10"
     larm_a = "10  18 0 -100  18 0 10"
@@ -252,9 +252,9 @@ class WalkTask:
     self.ms.sendMsg(":destroy SoT")
     self.ms.sendMsg(":unload StackOfTasks")
 
-    # --- 
+    # ---
     # --- LOGS
-    # --- 
+    # ---
     # waitInputConfirm("Click [OK] to log")
     self.log.stop()
     self.log.save("WalkTask")

@@ -1,14 +1,14 @@
-run /home/evrard/devel/script/base
+import base
 new Dynamic dyn2
 new Dynamic dyn
-run /home/evrard/devel/script/dynfiles
+import dynfiles
 dyn2.parse
 new VectorConstant zero
 zero.resize 46
 plug zero.out dyn2.position
 plug zero.out dyn2.velocity
 plug zero.out dyn2.acceleration
-dyn2.createOpPoint lleg 12 
+dyn2.createOpPoint lleg 12
 
 # -- FF from leg
 new Inverse<matrixhomo> worldMwaist
@@ -16,9 +16,9 @@ plug dyn2.lleg worldMwaist.in
 new MatrixHomoToPoseRollPitchYaw posFF
 plug worldMwaist.out posFF.in
 new ComposeVector<RPY+T> posKF
-plug posFF.out posKF.in2 
+plug posFF.out posKF.in2
 
-# --- KF 
+# --- KF
 dyn2.createOpPoint chest 14
 new Inverse<matrixhomo> chestMwaist
 plug dyn2.chest chestMwaist.in
@@ -31,9 +31,9 @@ plug worldRchest.out worldRwaist.in1
 plug chestRwaist.out worldRwaist.in2
 new MatrixToRPY worldrwaist
 plug worldRwaist.out worldrwaist.in
-plug worldrwaist.out posKF.in1 
+plug worldrwaist.out posKF.in1
 
-# --- DYN With true posFF	
+# --- DYN With true posFF
 dyn.parse
 plug zero.out dyn.velocity
 plug zero.out dyn.acceleration
@@ -41,8 +41,8 @@ plug posKF.out dyn.ffposition
 
 dyn.createOpPoint 0b 22
 dyn.createOpPoint 0 0
-dyn.createOpPoint rleg 6 
-dyn.createOpPoint lleg 12 
+dyn.createOpPoint rleg 6
+dyn.createOpPoint lleg 12
 
 new FeaturePoint6d p6
 new FeaturePoint6d p6d
@@ -90,12 +90,12 @@ eye3.[] 2 0 1
 
 set p6.selec 000111
 
-# --- COM 
+# --- COM
 dyn.setComputeCom 1
 
 new FeatureGeneric featureCom
 plug dyn.com featureCom.errorIN
-plug dyn.Jcom featureCom.jacobianIN 
+plug dyn.Jcom featureCom.jacobianIN
 set featureCom.selec 11
 
 new FeatureGeneric featureComDes
@@ -130,7 +130,7 @@ jacobianLegs.[] 8 14 1
 jacobianLegs.[] 9 15 1
 jacobianLegs.[] 10 16 1
 jacobianLegs.[] 11 17 1
-plug jacobianLegs.out featureLegs.jacobianIN 
+plug jacobianLegs.out featureLegs.jacobianIN
 
 new VectorConstant vectorLegs
 vectorLegs.resize 12
@@ -157,18 +157,18 @@ Tsemelle.[] 2 -.105
 plug Tsemelle.out semelle.in2
 
 new Multiply<matrixhomo> wMrf
-plug dyn.rleg wMrf.in1 
+plug dyn.rleg wMrf.in1
 plug semelle.out wMrf.in2
 
 new Multiply<matrixhomo> wMlf
-plug dyn.lleg wMlf.in1 
+plug dyn.lleg wMlf.in1
 plug semelle.out wMlf.in2
 
 new Inverse<matrixhomo> rMw
-plug wMrf.out rMw.in 
+plug wMrf.out rMw.in
 
 new Multiply<matrixhomo> rMl
-plug rMw.out rMl.in1 
+plug rMw.out rMl.in1
 plug wMlf.out rMl.in2
 
 new HomoToTwist rVl

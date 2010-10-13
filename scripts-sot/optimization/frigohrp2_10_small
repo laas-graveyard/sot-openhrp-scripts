@@ -14,7 +14,7 @@ rhPoint.fill 0
 # rhPoint.[] 2 -.08
 rhPoint.[] 2 -.18
 plug rhPoint.out rhPose.in2
-compute rhPose.out 
+compute rhPose.out
 rh.transfoSignal rhPose.out
 plug dyn.Jrh rh.jacobianIN
 plug dyn.rh rh.positionIN
@@ -28,7 +28,7 @@ lhPoint.fill 0
 lhPoint.[] 2 -.08
 lhPoint.[] 1 .01
 plug lhPoint.out lhPose.in2
-compute lhPose.out 
+compute lhPose.out
 lh.transfoSignal lhPose.out
 plug dyn.Jlh lh.jacobianIN
 plug dyn.lh lh.positionIN
@@ -104,7 +104,7 @@ plug gainT0__RIGHT_HAND_TASK_OPENING.gain T0__RIGHT_HAND_TASK_OPENING.controlGai
 gainT0__RIGHT_HAND_TASK_OPENING.setConstant .1
 new FeatureGeneric featureT0
 new FeatureGeneric featureT0des
-plug JgripRh.out  featureT0.jacobianIN 
+plug JgripRh.out  featureT0.jacobianIN
 plug griperRhPos.out featureT0.errorIN
 set featureT0.sdes featureT0des
 # set featureT0des.errorIN [1](0.2)
@@ -164,7 +164,7 @@ plug gainT2__RIGHT_HAND_TASK_CLOSING.gain T2__RIGHT_HAND_TASK_CLOSING.controlGai
 gainT2__RIGHT_HAND_TASK_CLOSING.setConstant .1
 new FeatureGeneric featureT2
 new FeatureGeneric featureT2des
-plug JgripRh.out  featureT2.jacobianIN 
+plug JgripRh.out  featureT2.jacobianIN
 plug griperRhPos.out featureT2.errorIN
 set featureT2.sdes featureT2des
 # set featureT2des.errorIN [1](0.2)
@@ -278,7 +278,7 @@ plug gainT5__LEFT_HAND_TASK_OPENING.gain T5__LEFT_HAND_TASK_OPENING.controlGain
 gainT5__LEFT_HAND_TASK_OPENING.setConstant .1
 new FeatureGeneric featureT5
 new FeatureGeneric featureT5des
-plug JgripLh.out  featureT5.jacobianIN 
+plug JgripLh.out  featureT5.jacobianIN
 plug griperLhPos.out featureT5.errorIN
 set featureT5.sdes featureT5des
 # set featureT5des.errorIN [1](0.2)
@@ -335,7 +335,7 @@ plug gainT8__LEFT_HAND_TASK_CLOSING.gain T8__LEFT_HAND_TASK_CLOSING.controlGain
 gainT8__LEFT_HAND_TASK_CLOSING.setConstant .1
 new FeatureGeneric featureT8
 new FeatureGeneric featureT8des
-plug JgripLh.out  featureT8.jacobianIN 
+plug JgripLh.out  featureT8.jacobianIN
 plug griperLhPos.out featureT8.errorIN
 set featureT8.sdes featureT8des
 # set featureT8des.errorIN [1](0.2)
@@ -415,15 +415,15 @@ set featureT0des.errorIN [1](0.5)
 # Pose finale task1a
 set featureT1ades.position [4,4]((-0.005276,-0.796785,-0.604240,0.424558),(-0.048169,0.603749,-0.795718,-0.145166),(0.998825,0.024908,-0.041566,0.926794),(0.000000,0.000000,0.000000,1.000000))
 
-	
+
 # Pose finale task1
 set featureT1des.position [4,4]((0.000358,-0.750394,-0.660991,0.499870),(-0.080926,0.658801,-0.747952,-0.057798),(0.996720,0.053759,-0.060491,0.960079),(0.000000,0.000000,0.000000,1.000000))
-	
+
 # Value griper task 2 (CLOSE FRIDGE)
 set featureT2des.errorIN [1](0.125)
 
 # Pose finale tak3: end fridge operture
-set wMhdT3.in2 [3](0.365623,-0.305074,0.952690) 
+set wMhdT3.in2 [3](0.365623,-0.305074,0.952690)
 
 # Pose finale tak4: end fridge closure
 set wMhdT4.in2 [3](0.499870,-0.057798,0.960079)
@@ -684,7 +684,7 @@ tr.add T10__LEFT_ARM_TASK.error T10
 # tr.add T9b__LEFT_ARM_TASK_MOVETO.task v9b
 # tr.add T10__LEFT_ARM_TASK.task v10
 
-# tr.add rh.position rh 
+# tr.add rh.position rh
 # tr.add distanceT3.error T3
 # tr.add gainT3__RIGHT_ARM_TASK_FRIDGE_UP_OPENING.gain gainT3
 
@@ -724,7 +724,7 @@ proc showE
 -> T1__RIGHT_ARM_TASK_FRIDGE_UP.task
 endproc
 
-                                                         
+
 seq.addEvent   add  2 T0__RIGHT_HAND_TASK_OPENING
 seq.addEvent   rm   1005 T0__RIGHT_HAND_TASK_OPENING
 seq.addEvent   add  0 T1a__RIGHT_ARM_TASK_FRIDGE_UP
@@ -766,7 +766,7 @@ gainT9__LEFT_ARM_TASK_MOVETO.set 0.4    0.4    1
 gainT9b__LEFT_ARM_TASK_MOVETO.set 0.4    0.4    1
 gainT10__LEFT_ARM_TASK.set 0.4    0.3    10
 
-run /home//nmansard//src/StackOfTasks/script/forceSimu
+import forceSimu
 
 
 

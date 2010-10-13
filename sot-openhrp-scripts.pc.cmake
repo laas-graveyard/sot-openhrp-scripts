@@ -6,7 +6,7 @@ datarootdir=${install_pkg_prefix}/share
 docdir=${install_pkg_datarootdir}/doc/${PROJECT_NAME}
 
 Name: ${PROJECT_NAME}
-Description: 
+Description:
 Version: ${PROJECT_VERSION}
 Requires: ${PACKAGE_REQUIREMENTS}
 Libs: ${LIBDIR_KW}${install_pkg_libdir} ${${PROJECT_NAME}_LDFLAGS}

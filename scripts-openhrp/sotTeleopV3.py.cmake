@@ -98,7 +98,7 @@ SoT.sendMsg(":script import grip")
 SoT.sendMsg(":script OpenHRP.pause")
 SoT.start()
 
-# This dialog box to make sure that OpenHRP.state is really initialized 
+# This dialog box to make sure that OpenHRP.state is really initialized
 # before going on.
 waitInputConfirm("Chotto matte kudasai ne (click [OK] to continue).")
 
@@ -150,9 +150,9 @@ SoT.sendMsg(':profile')
 ms.sendMsg(":destroy SoT")
 ms.sendMsg(":unload StackOfTasks")
 
-# --- 
+# ---
 # --- LOGS
-# --- 
+# ---
 waitInputConfirm("Click [OK] to log")
 log.stop()
 log.save("teleop")

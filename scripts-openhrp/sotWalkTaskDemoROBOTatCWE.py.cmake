@@ -7,7 +7,7 @@ import time
 
 class Teleop:
   def __init__(self,name):
-    self.Name = name 
+    self.Name = name
     # ---------------------------------------------------------------------------- #
     # --- LOADING THE PLUGINS ---------------------------------------------------- #
     # ---------------------------------------------------------------------------- #
@@ -71,14 +71,14 @@ class Teleop:
     chest_a = "0 0"
     head_a = "0 0"
 
-    # Half sitting 
+    # Half sitting
     # rarm_a = "15 -10 0 -30 0 0 10"
     # larm_a = "15  10 0 -30 0 0 10"
-  
+
     # New Germany
     # rarm_a = "33 -10 0 -120 -10 0 10" # <-- ballrose: "10 -10 -10 -80 0 -0 0", dunnowhat: "10 -10 -10 -70 0 -0 10"
     # larm_a = "33  10 0 -120  10 0 10" # <-- ballrose: "35 5 0 -20.0 0 0 10.0", dunnowhat: "10  10 10 -70 0 0 10"
-   
+
     # Old Germany
     rarm_a = "10 -18 0 -100 -18 0 10"
     larm_a = "10  18 0 -100  18 0 10"
@@ -131,14 +131,14 @@ class Teleop:
 
     self.SoT.sendMsg(":script OpenHRP.reinit from mc")
     self.SoT.sendMsg(":script OpenHRP.play")
-    
+
     if(self.with_trace):
       self.SoT.sendMsg(":script tr.start")
     # waitInputConfirm("click [OK] to continue.")
 
     # def LaunchWalking(self):
     # --- Walking --- #
-    # 
+    #
 
     self.SoT.sendMsg(":script import hwpgpginit")
     time.sleep(1)
@@ -148,7 +148,7 @@ class Teleop:
 
     # def LaunchReactiveWalking(self):
     # --- Walking --- #
-    # 
+    #
     self.SoT.sendMsg(":script import walkreact")
     self.SoT.sendMsg(":script import walkreactrobotatcwe")
     self.SoT.sendMsg(":script import walking/hwpgfeettasksrel")
@@ -160,7 +160,7 @@ class Teleop:
 #    self.SoT.sendMsg(":script sot.push taskHead")
 #    self.SoT.sendMsg(":script sot.push taskGrip")
 #    self.SoT.sendMsg(":script stepper.thisIsZero record")
- 
+
 #  def StartStepper(self):
 #    self.SoT.sendMsg(":script import stepping")
 #    self.SoT.sendMsg(":script stepper.state start")
@@ -190,9 +190,9 @@ class Teleop:
     self.ms.sendMsg(":destroy SoT")
     self.ms.sendMsg(":unload StackOfTasks")
 
-    # --- 
+    # ---
     # --- LOGS
-    # --- 
+    # ---
     # waitInputConfirm("Click [OK] to log")
     self.log.stop()
     self.log.save("TeleopNoneModal")

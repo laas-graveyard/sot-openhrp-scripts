@@ -1,4 +1,4 @@
-run ${CMAKE_INSTALL_PREFIX}/script/dyn
+import dyn
 
 new RobotSimu OpenHRP
 OpenHRP.resize 46

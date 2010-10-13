@@ -21,7 +21,7 @@ new MatrixConstant selecvfdof
 selecvfdof.resize 6 6
 selecvfdof.eye
 
-# --- TASK FORCE ------------------------------------- 
+# --- TASK FORCE -------------------------------------
 new Add<vector> addVel
 new Add<vector> addForce
 
@@ -43,14 +43,14 @@ plug selecvfdof.out vgermanyselec.in2
 
 new Multiply<vector,matrix> vgermany
 plug vgermanyselec.out vgermany.in1
-plug Vw.out vgermany.in2 
+plug Vw.out vgermany.in2
 plug vgermany.out addVel.in1
 
 new Multiply<vector,matrix> fgermany
 plug Vw.out fgermany.in2
 plug fgermany.out addForce.in1
 
-# --- RETURN FORCE ----------------------------------- 
+# --- RETURN FORCE -----------------------------------
 new Compose<R+T> 0wtR
 plug waistRh.out 0wtR.in1
 set 0wtR.in2 [3](0,0,0)
@@ -60,7 +60,7 @@ new Multiply<vector,matrix> fsensor
 plug invVw.out fsensor.in2
 plug forceCompRH.torsorNullified fsensor.in1
 
-# --- RETURN POS ------------------------------------- 
+# --- RETURN POS -------------------------------------
 # dyn.0 = wRh. Inverse = h0Rw
 new Inverse<matrixhomo>  poseInit
 plug dyn.0 poseInit.in
@@ -81,7 +81,7 @@ plug wRh0.out wrtPoseInitinShoulder.in2
 new MatrixHomoToPoseQuaternion wrtPoseInitQuat
 plug wrtPoseInitinShoulder.out wrtPoseInitQuat.in
 
-# --- RETURN VEL ------------------------------------- 
+# --- RETURN VEL -------------------------------------
 new HomoToRotation absRrh
 plug wrtPoseInitinShoulder.out absRrh.in
 
@@ -201,7 +201,7 @@ proc vgermany(disable)
 endproc
 
 
-# --- TASK FORCE LEFT ------------------------------------- 
+# --- TASK FORCE LEFT -------------------------------------
 new Add<vector> addVelLH
 new Add<vector> addForceLH
 
@@ -218,7 +218,7 @@ set Rwtlh.in2 [3](0,0,0)
 new HomoToTwist Vwlh
 plug Rwtlh.out Vwlh.in
 new Multiply<vector,matrix> vgermanyLH
-plug Vwlh.out vgermanyLH.in2 
+plug Vwlh.out vgermanyLH.in2
 plug vgermanyLH.out addVelLH.in1
 new Multiply<vector,matrix> fgermanyLH
 plug Vwlh.out fgermanyLH.in2
@@ -244,7 +244,7 @@ proc vgermanyLH(disable)
 -> plug forceIntLH.velocity p3LH.errorIN
 endproc
 
-# --- RETURN FORCE ----------------------------------- 
+# --- RETURN FORCE -----------------------------------
 new Compose<R+T> Lwt0
 plug waistLh.out Lwt0.in1
 set Lwt0.in2 [3](0,0,0)
@@ -254,7 +254,7 @@ new Multiply<vector,matrix> fsensorLH
 plug invVwLH.out fsensorLH.in2
 plug forceCompLH.torsorNullified fsensorLH.in1
 
-# --- RETURN POS ------------------------------------- 
+# --- RETURN POS -------------------------------------
 # dyn.0 = wRh. Inverse = h0Rw
 new Inverse<matrixhomo>  poseInitLH
 plug dyn.lh poseInitLH.in
@@ -275,7 +275,7 @@ plug wRh0LH.out wrtPoseInitinShoulderLH.in2
 new MatrixHomoToPoseQuaternion wrtPoseInitQuatLH
 plug wrtPoseInitinShoulderLH.out wrtPoseInitQuatLH.in
 
-# --- RETURN VEL ------------------------------------- 
+# --- RETURN VEL -------------------------------------
 new HomoToRotation absRlh
 plug wrtPoseInitinShoulderLH.out absRlh.in
 
@@ -318,7 +318,7 @@ vlh.selec2 0 3
 compute vlh.out
 
 
-# --- TASK HEAD ------------------------------------- 
+# --- TASK HEAD -------------------------------------
 new Selec<vector> posHead
 plug OpenHRP.state posHead.in
 posHead.selec 20 22
@@ -326,7 +326,7 @@ posHead.selec 20 22
 new FeatureGeneric featureHead
 new FeatureGeneric featureHeadDes
 set featureHead.jacobianIN [2,36]((0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0),(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0))
-plug posHead.out featureHead.errorIN 
+plug posHead.out featureHead.errorIN
 set featureHead.sdes featureHeadDes
 new Task taskHead
 taskHead.add featureHead
@@ -382,7 +382,7 @@ plug taskHeadWB.error gainHeadWB.error
 plug gainHeadWB.gain taskHeadWB.controlGain
 
 
-# --- GRIPER ------------------------------------- 
+# --- GRIPER -------------------------------------
 plug OpenHRP.ptorque gripdes.torqueFullIN
 OpenHRP.withPseudoTorque 1
 
@@ -394,10 +394,10 @@ protectJl.resize 36
 protectJl.fill 0.97
 
 new Multiply<vector> upperJl
-plug protectJl.out upperJl.in2 
+plug protectJl.out upperJl.in2
 
 new Multiply<vector> lowerJl
-plug protectJl.out lowerJl.in2 
+plug protectJl.out lowerJl.in2
 
 squeeze jointlimit.upperJl upperJl.in1 upperJl.out
 squeeze jointlimit.lowerJl lowerJl.in1 lowerJl.out
@@ -474,9 +474,9 @@ proc wholebody
 -> sot.gradient taskJl
 endproc
 
-# --- IN SIMU 
-# --- IN SIMU 
-# --- IN SIMU 
+# --- IN SIMU
+# --- IN SIMU
+# --- IN SIMU
 # set forceCompRH.precompensation [6](0,0,0,0,0,0)
 # set forceCompRH.handRsensor [3,3]((0,-1,0),(1,0,0),(0,0,1))
 # set forceCompRH.sensorCom [3](0,0,-0.05)
@@ -487,7 +487,7 @@ endproc
 # Position Sensor [ 0.005 0   -0.05925 ]
 # Sensor->com -0.0009    0.0012   -0.0479
 # set forceCompRH.sensorCom [3](-0.0009,0.0012,-0.0479)
-# After "calibration" 
+# After "calibration"
 # set forceCompRH.sensorCom [3](-0.0009,0.000,-0.03428)
 
 # set forceCompRH.gravity [6](0.000000,0.000000,-0,0.000000,0.000000,0.000000)
@@ -513,7 +513,7 @@ set friction.in [6](180,180,180,5,5,5)
 # OpenHRP.periodicCall addSignal necklimit.jointLimited
 
 # plug massRH.massInverse forceIntLH.massInverse
-# 
+#
 
 # proc show
 # -> get forceIntLH.force
@@ -521,7 +521,7 @@ set friction.in [6](180,180,180,5,5,5)
 # -> get forceInt.force
 # -> get forceInt.velocity
 # endproc
-# 
+#
 
 # set taskForceLH.controlSelec 11111100000000000000000000000
 

@@ -1,4 +1,4 @@
-run /home/nmansard/src/StackOfTasks/script/dyn2
+import dyn2
 new Trajectory traj
 traj.contactsDef /home/nmansard/src/StackOfTasks/tests/adrien/contacts.txt
 traj.postures /home/nmansard/src/StackOfTasks/tests/adrien/pos.txt

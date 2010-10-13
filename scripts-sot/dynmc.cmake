@@ -1,5 +1,5 @@
 new DynamicHrp2 dynmc
-dynmc.setFiles ${HRP2_MODEL_DIRECTORY}/ HRP2JRLmainsmall.wrl ${HRP2_CONFIG_DIRECTORY}/HRP2Specificities.xml ${HRP2_CONFIG_DIRECTORY}/HRP2LinkJointRankSmall.xml 
+dynmc.setFiles ${HRP2_MODEL_DIRECTORY}/ HRP2JRLmainsmall.wrl ${HRP2_CONFIG_DIRECTORY}/HRP2Specificities.xml ${HRP2_CONFIG_DIRECTORY}/HRP2LinkJointRankSmall.xml
 dynmc.parse
 
 new Stack<vector> mcsmall

@@ -31,7 +31,7 @@ zmpreffromcom${DYN_LIB_EXT}
 angle-estimator${DYN_LIB_EXT}
 kalman${DYN_LIB_EXT}
 task-pd${DYN_LIB_EXT}
-force-compensation${DYN_LIB_EXT} 
+force-compensation${DYN_LIB_EXT}
 integrator-force${DYN_LIB_EXT}
 integrator-force-rk4${DYN_LIB_EXT}
 integrator-force-exact${DYN_LIB_EXT}

@@ -5,9 +5,9 @@ new PatternGenerator pg
 # Initialize files and information of the pattern generator.
 pg.setParamPreview ${HRP2_CONFIG_DIRECTORY}/PreviewControlParameters.ini
 pg.setVrmlDir ${HRP2_MODEL_DIRECTORY}/
-pg.setVrml HRP2JRLmain.wrl 
+pg.setVrml HRP2JRLmain.wrl
 pg.setXmlSpec ${HRP2_CONFIG_DIRECTORY}/HRP2Specificities.xml
-pg.setXmlRank ${HRP2_CONFIG_DIRECTORY}/HRP2LinkJointRank.xml 
+pg.setXmlRank ${HRP2_CONFIG_DIRECTORY}/HRP2LinkJointRank.xml
 
 # Build internal object
 pg.buildModel
@@ -19,9 +19,9 @@ pg.parsecmd :singlesupporttime 0.78
 pg.parsecmd :doublesupporttime 0.02
 pg.parsecmd :armparameters 0.5
 pg.parsecmd :LimitsFeasibility 0.0
-pg.parsecmd :ZMPShiftParameters 0.015 0.015 0.015 0.015 
+pg.parsecmd :ZMPShiftParameters 0.015 0.015 0.015 0.015
 pg.parsecmd :TimeDistributeParameters 2.0 3.5 1.0 3.0
-pg.parsecmd :UpperBodyMotionParameters 0.0 -0.5 0.0 
+pg.parsecmd :UpperBodyMotionParameters 0.0 -0.5 0.0
 pg.parsecmd :SetAlgoForZmpTrajectory Kajita
 
 # Plug OpenHRP in the pg to get the current state of the robot.

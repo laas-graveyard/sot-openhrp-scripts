@@ -1,4 +1,4 @@
-        
+
 # Specific to HRP-2
 import hrp
 import hstsetup
@@ -115,9 +115,9 @@ ms.sendMsg(":unload StackOfTasks")
 waitInputConfirm("Log and script finished ")
 
 
-# --- 
+# ---
 # --- LOGS
-# --- 
+# ---
 #waitInputConfirm("Wait before log")
 log.stop()
 log.save("sim")

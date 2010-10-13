@@ -1,6 +1,6 @@
 # Olivier Stasse
 # 2009-02
-# 
+#
 debugtrace true
 # ------------------------------------------------------------
 # Modify the origin to ensure continuity with and w/ the walk.
@@ -11,13 +11,13 @@ compute lfo_H_pg.out
 freeze lfo_H_pg.in
 
 
-# ---- Previous Version : Based on the 
+# ---- Previous Version : Based on the
 # ---- waist position reference.
 # new Compose<RPY+T> pg_H_wa
 # plug pg.waistpositionabsolute pg_H_wa.in2
 # plug pg.waistattitudeabsolute pg_H_wa.in1
 
-# ---- New Version : Based on the 
+# ---- New Version : Based on the
 # ---- support foot position reference.
 
 new Selector SupportFootSelec
@@ -45,14 +45,14 @@ plug sf_H_wa.out pg_H_wa.in2
 new Multiply<matrixhomo> lfo_H_wa
 plug lfo_H_pg.out lfo_H_wa.in1
 plug pg_H_wa.out lfo_H_wa.in2
-     		 
+
 new MatrixHomoToPoseRollPitchYaw ffpos_from_pg
 plug lfo_H_wa.out ffpos_from_pg.in
 
 # --- Pass the dyn from ref left_foot to ref pg.
 plug ffpos_from_pg.out dyn.ffposition
 
-# --- Extract pose and attitude from ffpos 
+# --- Extract pose and attitude from ffpos
 
 new Selec<vector> ffattitude_from_pg
 plug ffpos_from_pg.out ffattitude_from_pg.in
@@ -82,7 +82,7 @@ plug wa_H_lfo.out wa_H_zmp.in2
 pg.initState
 
 # Those two lines needs some time
-# to make sure the robot takes into account nicely 
+# to make sure the robot takes into account nicely
 # the new reference.
 plug pg.zmpref OpenHRP.zmp
 # plug pg.waistattitude OpenHRP.attitudeIN
@@ -91,6 +91,6 @@ unplug OpenHRP.zmp
 pg.parsecmd :SetZMPFrame world
 plug wa_H_zmp.out OpenHRP.zmp
 
-# --- 
+# ---
 # --- Last init and you can go.
 

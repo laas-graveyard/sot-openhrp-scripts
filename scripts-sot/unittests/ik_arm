@@ -32,6 +32,6 @@ unplug OpenHRP.zmp
 unplug posKF.attitudeIN
 
 tr.add task.task
-tr.add task.jacobian 
+tr.add task.jacobian
 tr.add sot.control qdot
 tr.add dyn.position

@@ -1,4 +1,4 @@
-run ${CMAKE_INSTALL_PREFIX}/script/simusmall
+import simusmall
 
 set taskCom.controlGain 10
 

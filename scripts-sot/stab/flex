@@ -35,7 +35,7 @@ plug sot.control vflex.in1
 
 
 OpenHRP.periodicCall addSignal kalmanFlex.Xest
-OpenHRP.periodicCall addSignal velocityFlex.out 
+OpenHRP.periodicCall addSignal velocityFlex.out
 # freeze sot.q0
 
 tr.add sot.q0

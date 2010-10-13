@@ -35,7 +35,7 @@ new Selec<matrix> JLHact
 JLHact.jselec 6 38
 JLHact.iselec 0 6
 plug dyn.Jlh JLHact.in
-plug JLHact.out massLH.jacobian 
+plug JLHact.out massLH.jacobian
 plug Ainv.out massLH.inertiaInverse
 # plug Aact.out massLH.inertia
 plug massLH.massInverse forceIntLH.massInverse
@@ -50,7 +50,7 @@ plug dyn.Jlh p3LH.jacobianIN
 new Task taskForceLH
 taskForceLH.add p3LH
 set p3LH.selec ...1
-set p3LH.sdes 
+set p3LH.sdes
 plug forceIntLH.velocity p3LH.errorIN
 p3LH.dimDefault 6
 

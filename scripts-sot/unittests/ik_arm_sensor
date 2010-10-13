@@ -1,7 +1,7 @@
 # Test (4) cf readme
 # Chest is off. No motion from the legs. We feedback on the position sensor. No
 # stab. The flex velocity is not compensate.
-# Check the noise and effect of the sensor. Check the compensatory motions 
+# Check the noise and effect of the sensor. Check the compensatory motions
 # when the flex has moved.
 
 

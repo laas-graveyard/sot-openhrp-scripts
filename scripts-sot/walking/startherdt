@@ -11,5 +11,5 @@ set pg.velocitydes [3](0.1,0.0,0.0)
 # Start the robot with a speed of 0.1 m/0.8 s
 pg.parsecmd :HerdtOnline 0.1 0.0 0.0
 
-# You can now modifiy the speed of the robot 
+# You can now modifiy the speed of the robot
 # using set pg.velocitydes [3]( x, y, yaw)

@@ -2,7 +2,7 @@
 # Constrained IK from the lleg: motion from legs and chest.
 # We feedback on the position sensor. No
 # stab. The flex velocity is not compensate.
-# Check the noise and effect of the sensor. Check the compensatory motions 
+# Check the noise and effect of the sensor. Check the compensatory motions
 # when the flex has moved.
 
 # Remove stab and the sensor
@@ -37,4 +37,4 @@ tr.add OpenHRP.attitude
 tr.add flex.angles
 tr.add dyn.ffposition
 # tr.add velocityFlex.out flexvel
-# OpenHRP.periodicCall addSignal velocityFlex.out 
+# OpenHRP.periodicCall addSignal velocityFlex.out

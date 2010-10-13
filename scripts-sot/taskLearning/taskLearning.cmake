@@ -50,20 +50,20 @@ plug Vw.out reflearn.in2
 
 # new FeaturePoint6d o6
 # new FeaturePoint6d o6d
-# 
+#
 # # comp is declared in dyn
 # plug comp.out o6d.position
 # plug dyn.J0 o6.Jq
 # plug dyn.0 o6.position
 # set o6.sdes o6d
-# 
+#
 # new Task taskRhand
 # taskRhand.add o6
 # new GainAdaptive gainRhand
 # gainRhand.setConstant .2
 # plug taskRhand.error gainRhand.error
 # plug gainRhand.gain taskRhand.controlGain
-# 
+#
 # set o6.selec 111000
 # o6.frame current
 
@@ -103,8 +103,8 @@ proc learntr
 endproc
 
 proc learnscripts
--> run /home/evrard/devel/openrobots/script/tlearn
--> run /home/evrard/devel/openrobots/script/taskLearning/taskLearning
+-> import tlearn
+-> import taskLearning/taskLearning
 endproc
 
 proc learnkin

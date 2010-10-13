@@ -15,10 +15,10 @@ mainContact.create matrixHomo footPosition
 plug dyn.lleg mainContact.footPosition0
 plug dyn.rleg mainContact.footPosition1
 
-# --- FLEX 
+# --- FLEX
 plug mainContact.zeroPosition flex.contactEmbeddedPosition
 
-# --- SOT 
+# --- SOT
 legs.clear
 legs.add mainContact.jacobian
 

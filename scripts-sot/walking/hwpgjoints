@@ -3,9 +3,9 @@ sot.clear
 
 new Selec<vector> cmdLegs
 plug pg.walkingerrorposition cmdLegs.in
-cmdLegs.selec 0 12	 
-unplug featureLegs.errorIN    
-plug cmdLegs.out featureLegs.errorIN	
+cmdLegs.selec 0 12
+unplug featureLegs.errorIN
+plug cmdLegs.out featureLegs.errorIN
 set taskLegs.controlGain -1
 
 sot.push taskLegs

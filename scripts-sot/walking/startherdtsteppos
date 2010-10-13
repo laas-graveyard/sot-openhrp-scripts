@@ -12,7 +12,7 @@ set pg.velocitydes [3](0.1,0.0,0.0)
 pg.parsecmd :HerdtOnlineStepPos 0.2 0.0 0.0
 
 # Step sequence while the last one is repeatead over and over
-pg.parsecmd :setstepspositions  0.1 0.0 0.0  0.2 0.0 0.0  -0.1 0.0 0.0  0.1 0.0 0.0  0.2 0.0 0.0 
+pg.parsecmd :setstepspositions  0.1 0.0 0.0  0.2 0.0 0.0  -0.1 0.0 0.0  0.1 0.0 0.0  0.2 0.0 0.0
 
-# You can now modifiy the speed of the robot 
+# You can now modifiy the speed of the robot
 # using set pg.velocitydes [3]( x, y, yaw)
