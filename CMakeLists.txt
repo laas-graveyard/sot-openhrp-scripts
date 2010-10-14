@@ -38,6 +38,9 @@ FIND_PATH(
   DOC "OpenHRP home directory"
   NO_DEFAULT_PATH
   )
+IF(NOT OPENHRP_HOME)
+  MESSAGE(FATAL_ERROR "Failed to find the OpenHRP home (root) directory.")
+ENDIF(NOT OPENHRP_HOME)
 
 CONFIGURE_FILE(
   "share/applications/sot-openhrp.desktop.cmake"
