@@ -114,7 +114,7 @@ class AbstractExperiment(object):
         self.with_joystick = False
 
 
-        self.ms = findPluginManager("motionsys")
+        self.ms = hrp.findPluginManager("motionsys")
 
         # Kalman filter.
         if(not self.GEOMETRIC_MODE):
@@ -124,7 +124,7 @@ class AbstractExperiment(object):
 
         # Sequence player.
         self.ms.load("seqplay")
-        self.seq = SequencePlayerHelper.narrow(
+        self.seq = hrp.SequencePlayerHelper.narrow(
             self.ms.create("seqplay","seq", self.corba_string))
         self.seq.start()
 
