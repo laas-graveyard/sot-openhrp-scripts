@@ -19,7 +19,7 @@ from abstract_experiment import AbstractExperiment
 
 class Default(AbstractExperiment):
     def __init__(self,
-                 robot = Hrp2_10,
+                 robot = Hrp2_14,
                  initialPosition = defaultInitialPositions):
         AbstractExperiment.__init__(self, robot, initialPosition)
 
