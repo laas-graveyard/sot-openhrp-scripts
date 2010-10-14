@@ -138,7 +138,7 @@ class AbstractExperiment(object):
 
         # Log plugin.
         self.ms.load("logplugin")
-        self.log = LoggerPluginHelper.narrow(
+        self.log = hrp.LoggerPluginHelper.narrow(
             self.ms.create("logplugin","log",""))
         if(not self.GEOMETRIC_MODE):
             self.log.add("kf")
