@@ -17,9 +17,11 @@
 
 import abstract_experiment
 
-class Tutorial(AbstractExperiment):
-    def __init__(self, initialPosition = defaultInitialPosition["hrp2_10"]):
-        AbstractExperiment.__init__(self, 'tutorial', initialPosition)
+class Default(AbstractExperiment):
+    def __init__(self,
+                 robot = Hrp2_10,
+                 initialPosition = defaultInitialPositions):
+        AbstractExperiment.__init__(self, robot, initialPosition)
 
 if __name__ == "main":
-    launchExperiment(Tutorial)
+    launchExperiment(Default)

@@ -13,8 +13,33 @@
 # received a copy of the GNU Lesser General Public License along with
 # sot-openhrp-scripts. If not, see <http://www.gnu.org/licenses/>.
 
+# Search for required directories.
+FIND_PATH(
+  HRP2_SCRIPT_DIR hrp.py
+  DOC "HRP-2 script directory"
+  NO_DEFAULT_PATH
+  )
+
+IF(NOT HRP2_SCRIPT_DIR)
+  MESSAGE(FATAL_ERROR "Failed to find the HRP-2 script directory.")
+ENDIF(NOT HRP2_SCRIPT_DIR)
+
+CONFIGURE_FILE(
+  "abstract_experiment.py.cmake"
+  "${CMAKE_CURRENT_BINARY_DIR}/abstract_experiment.py"
+  IMMEDIATE
+  )
+
+
 INSTALL(
-    FILES abstract_experiment.py tutorial.py
+    FILES ${CMAKE_CURRENT_BINARY_DIR}/abstract_experiment.py
     DESTINATION share/sot-openhrp/script
-    PERMISSIONS OWNER_READ GROUP_READ WORLD_READ
+    PERMISSIONS OWNER_READ OWNER_WRITE GROUP_READ WORLD_READ
+)
+
+
+INSTALL(
+    FILES default.py
+    DESTINATION share/sot-openhrp/script
+    PERMISSIONS OWNER_READ OWNER_WRITE GROUP_READ WORLD_READ
 )
