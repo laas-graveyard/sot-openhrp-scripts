@@ -32,4 +32,31 @@ ADD_SUBDIRECTORY(projects-openhrp)
 ADD_SUBDIRECTORY(scripts-openhrp)
 ADD_SUBDIRECTORY(scripts-sot)
 
+# Desktop files.
+FIND_PATH(
+  OPENHRP_HOME bin/unix/GrxUI.sh
+  DOC "OpenHRP home directory"
+  NO_DEFAULT_PATH
+  )
+
+CONFIGURE_FILE(
+  "share/applications/sot-openhrp.desktop.cmake"
+  "${CMAKE_CURRENT_BINARY_DIR}/share/applications/sot-openhrp.desktop"
+  IMMEDIATE
+  )
+
+INSTALL(
+    FILES
+      ${CMAKE_CURRENT_BINARY_DIR}/share/applications/sot-openhrp.desktop
+    DESTINATION share/applications
+    PERMISSIONS OWNER_READ OWNER_WRITE GROUP_READ WORLD_READ
+)
+INSTALL(
+    FILES
+      ${CMAKE_CURRENT_SOURCE_DIR}/share/pixmaps/sot-openhrp.xpm
+    DESTINATION share/pixmaps
+    PERMISSIONS OWNER_READ OWNER_WRITE GROUP_READ WORLD_READ
+)
+
+
 SETUP_PROJECT_FINALIZE()
