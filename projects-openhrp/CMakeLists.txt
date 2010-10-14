@@ -13,23 +13,20 @@
 # received a copy of the GNU Lesser General Public License along with
 # sot-openhrp-scripts. If not, see <http://www.gnu.org/licenses/>.
 
-# Requires at least CMake 2.6 to configure the package.
-CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
-
-INCLUDE(cmake/base.cmake)
-
-SET(PROJECT_NAME sot-openhrp-scripts)
-SET(PROJECT_VERSION 1.0.0.99)
-SET(PROJECT_DESCRIPTION "")
-SET(PROJECT_URL "")
-
-SETUP_PROJECT()
-
-SET(${PROJECT_NAME}_HEADERS)
-
-ADD_SUBDIRECTORY(doc)
-ADD_SUBDIRECTORY(projects-openhrp)
-ADD_SUBDIRECTORY(scripts-openhrp)
-ADD_SUBDIRECTORY(scripts-sot)
-
-SETUP_PROJECT_FINALIZE()
+CONFIGURE_FILE(
+  "hrp2jrl-sot-simu.xml.cmake"
+  "${CMAKE_CURRENT_BINARY_DIR}/hrp2jrl-sot-simu.xml"
+  IMMEDIATE
+  )
+CONFIGURE_FILE(
+  "hrp2jrl-sot-robot.xml.cmake"
+  "${CMAKE_CURRENT_BINARY_DIR}/hrp2jrl-sot-robot.xml"
+  IMMEDIATE
+  )
+INSTALL(
+    FILES
+      ${CMAKE_CURRENT_BINARY_DIR}/hrp2jrl-sot-robot.xml
+      ${CMAKE_CURRENT_BINARY_DIR}/hrp2jrl-sot-simu.xml
+    DESTINATION share/sot-openhrp/project
+    PERMISSIONS OWNER_READ OWNER_WRITE GROUP_READ WORLD_READ
+)
