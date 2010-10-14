@@ -20,19 +20,9 @@ SET(SOT_OPENHRP_SCRIPTS_DIR
 
 # Scripts list.
 SET(SCRIPTS
-  TestHWPGinSOT.py
-  TestStackOfTasksV3.py
-  demoBSCWreviewmeeting.py
-  sotGeometry.py
   sotSOTH.py
-  sotTaskLearning.py
-  sotTeleopV3.py
-  sotTeleopV3nonemodal.py
   sotTutorial.py
   sotWalkTask.py
-  sotWalkTaskDemoROBOTatCWE.py
-  sotWalkTaskGeometry.py
-  sot_plugin.py
   )
 
 FOREACH(SCRIPT ${SCRIPTS})
