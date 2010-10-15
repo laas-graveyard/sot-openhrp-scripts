@@ -17,7 +17,7 @@
 FIND_PATH(
   HRP2_SCRIPT_DIR hrp.py
   DOC "HRP-2 script directory"
-  NO_DEFAULT_PATH
+  ENV HRP2_SCRIPT_DIR
   )
 
 IF(NOT HRP2_SCRIPT_DIR)

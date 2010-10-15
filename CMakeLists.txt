@@ -36,7 +36,7 @@ ADD_SUBDIRECTORY(scripts-sot)
 FIND_PATH(
   OPENHRP_HOME bin/unix/GrxUI.sh
   DOC "OpenHRP home directory"
-  NO_DEFAULT_PATH
+  ENV OPENHRP_HOME
   )
 IF(NOT OPENHRP_HOME)
   MESSAGE(FATAL_ERROR "Failed to find the OpenHRP home (root) directory.")
