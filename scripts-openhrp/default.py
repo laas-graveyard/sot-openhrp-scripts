@@ -18,6 +18,7 @@
 from abstract_experiment import AbstractExperiment, launchExperiment
 from abstract_experiment import Hrp2_10, Hrp2_14
 from abstract_experiment import defaultInitialPositions
+from abstract_experiment import exp
 
 class Default(AbstractExperiment):
     def __init__(self,
