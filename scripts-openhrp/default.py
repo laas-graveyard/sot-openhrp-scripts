@@ -15,7 +15,9 @@
 # received a copy of the GNU Lesser General Public License along with
 # sot-openhrp-scripts. If not, see <http://www.gnu.org/licenses/>.
 
-from abstract_experiment import AbstractExperiment
+from abstract_experiment import AbstractExperiment, launchExperiment
+from abstract_experiment import Hrp2_10, Hrp2_14
+from abstract_experiment import defaultInitialPositions
 
 class Default(AbstractExperiment):
     def __init__(self,
