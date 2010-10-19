@@ -316,44 +316,6 @@ class AbstractExperiment(object):
     def __str__(self):
         return "abstract experiment"
 
-    def startExperiment(self):
-        print "starting the experiment"
-        if(self.with_collision):
-            self.SoT.sendMsg(":script collision.run")
-        if(self.with_deadzone):
-            self.SoT.sendMsg(
-                ":script set forceCompRH.deadZoneLimit [6](15,.8,.8,.1,3,.1)")
-            self.SoT.sendMsg(
-                ":script set forceCompLH.deadZoneLimit [6](15,.8,.8,.1,3,.1)")
-
-        if(not self.with_teleop):
-            if(not self.with_table):
-                self.SoT.sendMsg(
-                    ":script set friction.in [6](50,50,50,2,2,1)")
-            else:
-                self.SoT.sendMsg(
-                    ":script set friction.in [6](100,100,100,3,3,2)")
-
-        if(self.with_homotopy):
-            self.SoT.sendMsg(":script zeroclampworkspace")
-            self.SoT.sendMsg(":script sot.push thomotopy")
-            self.SoT.sendMsg(":script sot.push thomotopy_lh")
-        else:
-            self.SoT.sendMsg(":script sot.push taskForce")
-            self.SoT.sendMsg(":script sot.push taskForceLH")
-
-        if(self.with_posture):
-            if (self.robot == Hrp2_10):
-                self.SoT.sendMsg(":script sot.push taskPosturehrp2_10")
-            elif (self.robot == Hrp2_14):
-                self.SoT.sendMsg(":script sot.push taskPosture")
-            else:
-                print "Invalid robot. Aborting..."
-                sys.exit(1)
-
-        self.SoT.sendMsg(":script sot.push taskHead")
-        self.SoT.sendMsg(":script stepcomp.thisIsZero record")
-
     def stopExperiment(self):
         print "stopping the experiment"
         self.SoT.sendMsg(":hold")
@@ -377,12 +339,11 @@ class AbstractExperiment(object):
 
     def startStepper(self):
         print "starting the stepper"
-        self.SoT.sendMsg(":script import stepping")
-        self.SoT.sendMsg(":script stepper.state start")
+        self.SoT.sendMsg(":script import walking/startherdt")
 
     def stopStepper(self):
         print "stopping the stepper"
-        self.SoT.sendMsg(":script stepper.state stop")
+        self.SoT.sendMsg(":script pg.velocitydes [3](0, 0, 0)")
 
 exp = None
 def launchExperiment(Experiment):
@@ -403,17 +364,11 @@ def launchExperiment(Experiment):
                 '------- Sequence ----------',
                 '#label',
 
-                'Start experiment',
-                'exp.startExperiment()',
-
                 'Start stepper',
                 'exp.startStepper()',
 
                 'Stop stepper',
                 'exp.stopStepper()',
-                
-                'Stop experiment',
-                'exp.stopExperiment()'
                 ]])
     exp.stopStepper()
     exp.stopExperiment()
