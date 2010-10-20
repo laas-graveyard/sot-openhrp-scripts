@@ -44,8 +44,6 @@ IF(NOT HRP2_10-SMALL_DIRECTORY)
   MESSAGE("Failed to find the HRP-2-10 small configuration directory. Scripts using these configuration files will not be configured properly.")
 ENDIF(NOT HRP2_10-SMALL_DIRECTORY)
 
-MESSAGE("config dirs: ${HRP2_MODEL_DIRECTORY}")
-
 # Variables required for script generation.
 SET(DYN_LIB_EXT ${CMAKE_SHARED_LIBRARY_SUFFIX})
 
