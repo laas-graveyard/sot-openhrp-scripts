@@ -19,13 +19,19 @@ INCLUDE(sot-scripts.cmake)
 FIND_PATH(
   HRP2_MODEL_DIRECTORY HRP2JRLmain.wrl
   DOC "HRP-2 model directory"
-  NO_DEFAULT_PATH
+  ENV HRP2_MODEL_DIRECTORY
   )
 
 FIND_PATH(
   HRP2_CONFIG_DIRECTORY HRP2LinkJointRank.xml
   DOC "HRP-2 configuration directory"
-  NO_DEFAULT_PATH
+  ENV HRP2_CONFIG_DIRECTORY
+  )
+
+FIND_PATH(
+  HRP2_10-SMALL_DIRECTORY HRP2JRLmainSmall.wrl
+  DOC "HRP-2-10-small model directory"
+  ENV HRP2_10_SMALL_DIRECTORY
   )
 
 IF(NOT HRP2_MODEL_DIRECTORY)
@@ -34,7 +40,11 @@ ENDIF(NOT HRP2_MODEL_DIRECTORY)
 IF(NOT HRP2_CONFIG_DIRECTORY)
   MESSAGE(FATAL_ERROR "Failed to find the HRP-2 configuration directory.")
 ENDIF(NOT HRP2_CONFIG_DIRECTORY)
+IF(NOT HRP2_10-SMALL_DIRECTORY)
+  MESSAGE("Failed to find the HRP-2-10 small configuration directory. Scripts using these configuration files will not be configured properly.")
+ENDIF(NOT HRP2_10-SMALL_DIRECTORY)
 
+MESSAGE("config dirs: ${HRP2_MODEL_DIRECTORY}")
 
 # Variables required for script generation.
 SET(DYN_LIB_EXT ${CMAKE_SHARED_LIBRARY_SUFFIX})
