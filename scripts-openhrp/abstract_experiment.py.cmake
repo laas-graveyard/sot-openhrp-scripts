@@ -134,6 +134,10 @@ class AbstractExperiment(object):
 	if ( self.robot == Hrp2_10 ):
             robot_string = "HRP2JRL10Small"
 
+        if(not self.GEOMETRIC_MODE):
+            self.ms.load("hstabilizer")
+            self.st = self.ms.create("hstabilizer","st","")
+
         self.SoT = self.ms.create("StackOfTasks","SoT",robot_string)
 
         # Log plugin.
