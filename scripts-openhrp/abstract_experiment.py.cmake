@@ -209,6 +209,9 @@ class AbstractExperiment(object):
             print "Invalid robot. Aborting..."
             sys.exit(1)
 
+	self.SoT.sendMsg(":script import jointlimit")
+
+
         # Manipulation.
         self.SoT.sendMsg(":script OpenHRP.pause")
         self.SoT.start()
