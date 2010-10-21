@@ -130,11 +130,11 @@ class AbstractExperiment(object):
 
         # Stack of tasks.
         self.ms.load("StackOfTasks")
-        self.SoT = self.ms.create("StackOfTasks","SoT","")
+	robot_string = ""
+	if ( self.robot == Hrp2_10 ):
+            robot_string = "HRP2JRL10Small"
 
-        if(not self.GEOMETRIC_MODE):
-            self.ms.load("hstabilizer")
-            self.st = self.ms.create("hstabilizer","st","")
+        self.SoT = self.ms.create("StackOfTasks","SoT",robot_string)
 
         # Log plugin.
         self.ms.load("logplugin")
@@ -346,7 +346,7 @@ class AbstractExperiment(object):
 
     def stopStepper(self):
         print "stopping the stepper"
-        self.SoT.sendMsg(":script pg.velocitydes [3](0, 0, 0)")
+        self.SoT.sendMsg(":script set pg.velocitydes [3](0, 0, 0)")
 
 exp = None
 def launchExperiment(Experiment):
