@@ -14,19 +14,25 @@
 # sot-openhrp-scripts. If not, see <http://www.gnu.org/licenses/>.
 
 CONFIGURE_FILE(
-  "hrp2jrl-sot-simu.xml.cmake"
-  "${CMAKE_CURRENT_BINARY_DIR}/hrp2jrl-sot-simu.xml"
+  "hrp2_10-sot.xml.cmake"
+  "${CMAKE_CURRENT_BINARY_DIR}/hrp2_10-sot.xml"
   IMMEDIATE
   )
 CONFIGURE_FILE(
-  "hrp2jrl-sot-robot.xml.cmake"
-  "${CMAKE_CURRENT_BINARY_DIR}/hrp2jrl-sot-robot.xml"
+  "hrp2_14-sot-robot.xml.cmake"
+  "${CMAKE_CURRENT_BINARY_DIR}/hrp2_14-sot-robot.xml"
+  IMMEDIATE
+  )
+CONFIGURE_FILE(
+  "hrp2_14-sot-simu.xml.cmake"
+  "${CMAKE_CURRENT_BINARY_DIR}/hrp2_14-sot-simu.xml"
   IMMEDIATE
   )
 INSTALL(
     FILES
-      ${CMAKE_CURRENT_BINARY_DIR}/hrp2jrl-sot-robot.xml
-      ${CMAKE_CURRENT_BINARY_DIR}/hrp2jrl-sot-simu.xml
+      ${CMAKE_CURRENT_BINARY_DIR}/hrp2_14-sot-robot.xml
+      ${CMAKE_CURRENT_BINARY_DIR}/hrp2_14-sot-simu.xml
+      ${CMAKE_CURRENT_BINARY_DIR}/hrp2_10-sot.xml
     DESTINATION share/sot-openhrp/project
     PERMISSIONS OWNER_READ OWNER_WRITE GROUP_READ WORLD_READ
 )
