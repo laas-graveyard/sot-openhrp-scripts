@@ -213,7 +213,8 @@ class AbstractExperiment(object):
             print "Invalid robot. Aborting..."
             sys.exit(1)
 
-	self.SoT.sendMsg(":script import jointlimit")
+        if (self.robot == Hrp2_10):
+            self.SoT.sendMsg(":script import jointlimit")
 
 
         # Manipulation.
