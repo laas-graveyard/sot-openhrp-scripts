@@ -17,23 +17,23 @@ INCLUDE(sot-scripts.cmake)
 
 # Search for required directories.
 FIND_PATH(
-  HRP2_MODEL_DIRECTORY HRP2JRLmain.wrl
-  DOC "HRP-2 model directory"
-  NO_DEFAULT_PATH
-  )
-
-FIND_PATH(
   HRP2_CONFIG_DIRECTORY HRP2LinkJointRank.xml
   DOC "HRP-2 configuration directory"
   NO_DEFAULT_PATH
   )
-
-IF(NOT HRP2_MODEL_DIRECTORY)
-  MESSAGE(FATAL_ERROR "Failed to find the HRP-2 model directory.")
-ENDIF(NOT HRP2_MODEL_DIRECTORY)
 IF(NOT HRP2_CONFIG_DIRECTORY)
   MESSAGE(FATAL_ERROR "Failed to find the HRP-2 configuration directory.")
 ENDIF(NOT HRP2_CONFIG_DIRECTORY)
+
+SET(HRP2VRML
+  ${OPENHRP_HOME}/Controller/IOserver/robot/${OPENHRP_ROBOT}/model/)
+SET(HRP2VRML "${HRP2VRML}HRP2JRLmain.wrl")
+
+IF(NOT EXISTS ${HRP2VRML})
+  MESSAGE(FATAL_ERROR "Failed to find the HRP-2 model directory.")
+ENDIF()
+
+LIST(APPEND LOGGING_WATCHED_VARIABLES HRP2_CONFIG_DIRECTORY)
 
 
 # Variables required for script generation.

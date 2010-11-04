@@ -13,16 +13,10 @@
 # received a copy of the GNU Lesser General Public License along with
 # sot-openhrp-scripts. If not, see <http://www.gnu.org/licenses/>.
 
-# Search for required directories.
-FIND_PATH(
-  HRP2_SCRIPT_DIR hrp.py
-  DOC "HRP-2 script directory"
-  NO_DEFAULT_PATH
-  )
-
-IF(NOT HRP2_SCRIPT_DIR)
-  MESSAGE(FATAL_ERROR "Failed to find the HRP-2 script directory.")
-ENDIF(NOT HRP2_SCRIPT_DIR)
+# Make sure required files are installed at the expected location.
+IF(NOT EXISTS ${HRP2_SCRIPT_DIR}/hrp.py)
+  MESSAGE(FATAL_ERROR "Failed to find hrp.py file.")
+ENDIF()
 
 CONFIGURE_FILE(
   "abstract_experiment.py.cmake"
