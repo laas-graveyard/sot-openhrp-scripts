@@ -50,7 +50,9 @@ IF(WIN32)
   SET(TRACE_REPOSITORY "C:/tmp/")
 ELSEIF(UNIX)
     SET(TRACE_REPOSITORY "/tmp/")
-ENDIF(WIN32)
+ELSE()
+  MESSAGE(FATAL_ERROR "This platform is not supported.")
+ENDIF()
 
 INSTALL_GENERATED_SOT_SCRIPTS(share/dynamic-graph/script
   hri_init
