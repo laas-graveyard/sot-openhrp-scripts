@@ -33,6 +33,7 @@ IF(NOT EXISTS ${HRP2VRML})
   MESSAGE(FATAL_ERROR "Failed to find the HRP-2 model directory.")
 ENDIF()
 
+# Watch interesting variables.
 LIST(APPEND LOGGING_WATCHED_VARIABLES HRP2_CONFIG_DIRECTORY)
 
 
