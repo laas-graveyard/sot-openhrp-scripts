@@ -337,14 +337,6 @@ class AbstractExperiment(object):
         self.log.stop()
         self.log.save("WalkTask")
 
-    def startStepper(self):
-        print "starting the stepper"
-        self.SoT.sendMsg(":script import walking/startherdt")
-
-    def stopStepper(self):
-        print "stopping the stepper"
-        self.SoT.sendMsg(":script pg.velocitydes [3](0, 0, 0)")
-
 exp = None
 def launchExperiment(Experiment):
     """
@@ -362,13 +354,7 @@ def launchExperiment(Experiment):
     print "Initialization finished."
     waitInputMenu([[
                 '------- Sequence ----------',
-                '#label',
-
-                'Start stepper',
-                'exp.startStepper()',
-
-                'Stop stepper',
-                'exp.stopStepper()',
+                '#label'
                 ]])
     exp.stopStepper()
     exp.stopExperiment()
