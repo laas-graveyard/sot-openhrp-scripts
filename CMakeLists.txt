@@ -26,7 +26,12 @@ SET(PROJECT_URL "http://github.com/jrl-umi3218/sot-openhrp-scripts")
 
 SETUP_PROJECT()
 
-SET(${PROJECT_NAME}_HEADERS)
+ADD_REQUIRED_DEPENDENCY("dynamic-graph")
+
+# Search for closed-source packages.
+ADD_REQUIRED_DEPENDENCY("hrp2_10-small")
+ADD_REQUIRED_DEPENDENCY("hrp2_10-small-old")
+ADD_REQUIRED_DEPENDENCY("hrp2_14")
 
 # Search for OpenHRP root directory.
 SET(OPENHRP_ROBOT HRP2JRL)

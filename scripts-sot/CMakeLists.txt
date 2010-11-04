@@ -15,34 +15,51 @@
 
 INCLUDE(sot-scripts.cmake)
 
-# Search for required directories.
-FIND_PATH(
-  HRP2_CONFIG_DIRECTORY HRP2LinkJointRank.xml
-  DOC "HRP-2 configuration directory"
-  NO_DEFAULT_PATH
-  )
-IF(NOT HRP2_CONFIG_DIRECTORY)
-  MESSAGE(FATAL_ERROR "Failed to find the HRP-2 configuration directory.")
-ENDIF(NOT HRP2_CONFIG_DIRECTORY)
-
-SET(HRP2VRML
-  ${OPENHRP_HOME}/Controller/IOserver/robot/${OPENHRP_ROBOT}/model/)
-SET(HRP2VRML "${HRP2VRML}HRP2JRLmain.wrl")
-
-IF(NOT EXISTS ${HRP2VRML})
-  MESSAGE(FATAL_ERROR "Failed to find the HRP-2 model directory.")
-ENDIF()
-
-# Watch interesting variables.
-LIST(APPEND LOGGING_WATCHED_VARIABLES HRP2_CONFIG_DIRECTORY)
-
-
 # Variables required for script generation.
 SET(DYN_LIB_EXT ${CMAKE_SHARED_LIBRARY_SUFFIX})
 
 SET(DG_SCRIPT_DIR ${CMAKE_INSTALL_PREFIX}/share/dynamic-graph/script)
 SET(PLUGIN_LIST_FILENAME plugin.txt)
 
+#FIXME: should be small but robot package is broken for now.
+# Files from small robot have to be copied manually,
+#       PreviewControlParameters.ini is also missing.
+SET(HRP2_CONFIG_DIRECTORY ${HRP2_14_PREFIX}/share/hrp2_14)
+
+SET(HRP2_10-SMALL_DIRECTORY ${HRP2_10_SMALL_PREFIX}/share/hrp2_10-small)
+SET(HRP2_10-SMALL-OLD_DIRECTORY
+  ${HRP2_10_SMALL_OLD_PREFIX}/share/hrp2_10-small-old)
+
+# Check directories for required files.
+IF(NOT EXISTS ${HRP2_CONFIG_DIRECTORY}/HRP2SpecificitiesSmall.xml
+    OR NOT EXISTS ${HRP2_CONFIG_DIRECTORY}/HRP2Specificities.xml
+    OR NOT EXISTS ${HRP2_CONFIG_DIRECTORY}/HRP2LinkJointRank.xml
+    OR NOT EXISTS ${HRP2_CONFIG_DIRECTORY}/HRP2LinkJointRankSmall.xml
+    OR NOT EXISTS ${HRP2_CONFIG_DIRECTORY}/PreviewControlParameters.ini)
+  MESSAGE(FATAL_ERROR "Missing files in HRP2-14 robot directory.")
+ENDIF()
+
+# Check that robot model exists.
+SET(HRP2VRML_PATH
+  ${OPENHRP_HOME}/Controller/IOserver/robot/${OPENHRP_ROBOT}/model)
+
+IF(NOT EXISTS ${HRP2VRML_PATH}/HRP2JRLmain.wrl
+    OR NOT EXISTS ${HRP2VRML_PATH}/HRP2JRLmainSmall.wrl)
+  MESSAGE(FATAL_ERROR "Failed to find the HRP-2 models.\n"
+    "Are you sure that both standard and small models are installed?")
+ENDIF()
+
+# Watch for substitued variables in the sot scripts.
+LIST(APPEND LOGGING_WATCHED_VARIABLES
+  DYN_LIB_EXT
+  HRP2_MODEL_DIRECTORY
+  HRP2_CONFIG_DIRECTORY
+  HRP2_10-SMALL_DIRECTORY
+  HRP2_10-SMALL-OLD_DIRECTORY
+  DG_SCRIPT_DIR
+  PLUGIN_LIST_FILENAME
+  TRACE_REPOSITORY
+  )
 
 #  Where is the trace repository?
 #  FIXME: this is wrong. Trace output should go to a better place.
@@ -57,7 +74,6 @@ ENDIF()
 INSTALL_GENERATED_SOT_SCRIPTS(share/dynamic-graph/script
   hri_init
   base
-  cmake_install
   dyn
   dynfilessmall
   collisiondetection
