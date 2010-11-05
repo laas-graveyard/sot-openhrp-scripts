@@ -41,7 +41,7 @@ FIND_PATH(
   Controller/IOserver/robot/${OPENHRP_ROBOT}/script/hrp.py
   Controller/IOserver/robot/${OPENHRP_ROBOT}/model/HRP2JRLmain.wrl
   DOC "OpenHRP home directory"
-  NO_DEFAULT_PATH
+  ENV OPENHRP_HOME
   )
 IF(NOT OPENHRP_HOME)
   MESSAGE(FATAL_ERROR "Failed to find the OpenHRP home (root) directory.")

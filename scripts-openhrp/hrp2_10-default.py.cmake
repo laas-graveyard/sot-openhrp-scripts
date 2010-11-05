@@ -89,7 +89,7 @@ class AbstractExperiment(object):
     robotics application and by overriding the method implementation.
     """
     def __init__(self,
-                 robot = Hrp2_14,
+                 robot = Hrp2_10,
                  initialPositions = defaultInitialPositions):
         """
         The constructor takes two parameters:
@@ -213,8 +213,7 @@ class AbstractExperiment(object):
             print "Invalid robot. Aborting..."
             sys.exit(1)
 
-        if (self.robot == Hrp2_10):
-            self.SoT.sendMsg(":script import jointlimit")
+	self.SoT.sendMsg(":script import jointlimit")
 
 
         # Manipulation.
@@ -345,6 +344,18 @@ class AbstractExperiment(object):
         self.log.stop()
         self.log.save("WalkTask")
 
+    def startStepper(self):
+        print "starting the stepper"
+        self.SoT.sendMsg(":script import walking/startherdt")
+
+    def stopStepper(self):
+        print "stopping the stepper"
+        self.SoT.sendMsg(":script set pg.velocitydes [3](0, 0, 0)")
+
+    def startWalking(self):
+        print "starting walk"
+        self.SoT.sendMsg(":script set pg.velocitydes [3](0.1, 0, 0)")
+
 exp = None
 def launchExperiment(Experiment):
     """
@@ -362,10 +373,21 @@ def launchExperiment(Experiment):
     print "Initialization finished."
     waitInputMenu([[
                 '------- Sequence ----------',
-                '#label'
+                '#label',
+
+                'Start stepper',
+                'exp.startStepper()',
+
+                'Walk forward (10cm/s)',
+                'exp.startWalking()',
+
+                'Stop stepper',
+                'exp.stopStepper();',
+
+                'Stop and cleanup',
+                'exp.stopExperiment()',
+
                 ]])
-    exp.stopStepper()
-    exp.stopExperiment()
     print "Experiment has finished."
 
 if __name__ == "main":
