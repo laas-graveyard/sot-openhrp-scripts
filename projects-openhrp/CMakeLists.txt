@@ -13,37 +13,26 @@
 # received a copy of the GNU Lesser General Public License along with
 # sot-openhrp-scripts. If not, see <http://www.gnu.org/licenses/>.
 
-# Make sure required files are installed at the expected location.
-IF(NOT EXISTS ${HRP2_SCRIPT_DIR}/hrp.py)
-  MESSAGE(FATAL_ERROR "Failed to find hrp.py file.")
-ENDIF()
-
 CONFIGURE_FILE(
-  "abstract_experiment.py.cmake"
-  "${CMAKE_CURRENT_BINARY_DIR}/abstract_experiment.py"
+  "hrp2_10-sot.xml.cmake"
+  "${CMAKE_CURRENT_BINARY_DIR}/hrp2_10-sot.xml"
   IMMEDIATE
   )
-
 CONFIGURE_FILE(
-  "hrp2_10-default.py.cmake"
-  "${CMAKE_CURRENT_BINARY_DIR}/hrp2_10-default.py"
+  "hrp2_14-sot-robot.xml.cmake"
+  "${CMAKE_CURRENT_BINARY_DIR}/hrp2_14-sot-robot.xml"
   IMMEDIATE
   )
-
+CONFIGURE_FILE(
+  "hrp2_14-sot-simu.xml.cmake"
+  "${CMAKE_CURRENT_BINARY_DIR}/hrp2_14-sot-simu.xml"
+  IMMEDIATE
+  )
 INSTALL(
-    FILES ${CMAKE_CURRENT_BINARY_DIR}/abstract_experiment.py
-    DESTINATION share/sot-openhrp/script
-    PERMISSIONS OWNER_READ OWNER_WRITE GROUP_READ WORLD_READ
-)
-
-INSTALL(
-    FILES ${CMAKE_CURRENT_BINARY_DIR}/hrp2_10-default.py
-    DESTINATION share/sot-openhrp/script
-    PERMISSIONS OWNER_READ OWNER_WRITE GROUP_READ WORLD_READ
-)
-
-INSTALL(
-    FILES hrp2_14-default.py
-    DESTINATION share/sot-openhrp/script
+    FILES
+      ${CMAKE_CURRENT_BINARY_DIR}/hrp2_14-sot-robot.xml
+      ${CMAKE_CURRENT_BINARY_DIR}/hrp2_14-sot-simu.xml
+      ${CMAKE_CURRENT_BINARY_DIR}/hrp2_10-sot.xml
+    DESTINATION share/sot-openhrp/project
     PERMISSIONS OWNER_READ OWNER_WRITE GROUP_READ WORLD_READ
 )
