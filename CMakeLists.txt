@@ -36,15 +36,17 @@ ADD_REQUIRED_DEPENDENCY("hrp2_14")
 # Search for OpenHRP root directory.
 SET(OPENHRP_ROBOT HRP2JRL)
 FIND_PATH(
-  OPENHRP_HOME bin/unix/GrxUI.sh
+  OPENHRP_HOME
   NAMES
-  Controller/IOserver/robot/${OPENHRP_ROBOT}/script/hrp.py
-  Controller/IOserver/robot/${OPENHRP_ROBOT}/model/HRP2JRLmain.wrl
+   bin/unix/GrxUI.sh
+   Controller/IOserver/robot/${OPENHRP_ROBOT}/script/hrp.py
+   Controller/IOserver/robot/${OPENHRP_ROBOT}/model/HRP2JRLmain.wrl
   DOC "OpenHRP home directory"
-  ENV OPENHRP_HOME
+  PATHS ENV OPENHRP_HOME
+  PATHS ENV OPENHRPHOME # alternative syntax. I've seen both used.
   )
 IF(NOT OPENHRP_HOME)
-  MESSAGE(FATAL_ERROR "Failed to find the OpenHRP home (root) directory.")
+  MESSAGE(FATAL_ERROR "Failed to find the OpenHRP home (root) directory. Try setting your OPENHRP_HOME environment or cmake variable.")
 ENDIF(NOT OPENHRP_HOME)
 
 # Deduce directories location.
