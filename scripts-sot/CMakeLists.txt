@@ -43,12 +43,6 @@ ENDIF()
 SET(HRP2VRML_PATH
   ${OPENHRP_HOME}/Controller/IOserver/robot/${OPENHRP_ROBOT}/model)
 
-IF(NOT EXISTS ${HRP2VRML_PATH}/HRP2JRLmain.wrl
-    OR NOT EXISTS ${HRP2VRML_PATH}/HRP2JRLmainSmall.wrl)
-  MESSAGE(FATAL_ERROR "Failed to find the HRP-2 models.\n"
-    "Are you sure that both standard and small models are installed?")
-ENDIF()
-
 # Watch for substitued variables in the sot scripts.
 LIST(APPEND LOGGING_WATCHED_VARIABLES
   DYN_LIB_EXT
