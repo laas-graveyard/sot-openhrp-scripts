@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # -*- coding: iso-8859-15 -*-
-# Copyright (C) 2010 François Bleibel, Thomas Moulard, JRL, CNRS/AIST.
+# Copyright (C) 2010 Franï¿½ois Bleibel, Thomas Moulard, JRL, CNRS/AIST.
 #
 # This file is part of sot-openhrp-scripts.
 # sot-openhrp-scripts is free software: you can redistribute it and/or
@@ -128,17 +128,17 @@ class AbstractExperiment(object):
             self.ms.create("seqplay","seq", self.corba_string))
         self.seq.start()
 
-        # Stack of tasks.
-        self.ms.load("StackOfTasks")
-	robot_string = ""
-	if ( self.robot == Hrp2_10 ):
+        robot_string = ""
+        if ( self.robot == Hrp2_10 ):
             robot_string = "HRP2JRL10Small"
 
+        # Stack of tasks.
+        self.ms.load("StackOfTasks")
+        self.SoT = self.ms.create("StackOfTasks","SoT",robot_string)
+	    
         if(not self.GEOMETRIC_MODE):
             self.ms.load("hstabilizer")
             self.st = self.ms.create("hstabilizer","st","")
-
-        self.SoT = self.ms.create("StackOfTasks","SoT",robot_string)
 
         # Log plugin.
         self.ms.load("logplugin")
