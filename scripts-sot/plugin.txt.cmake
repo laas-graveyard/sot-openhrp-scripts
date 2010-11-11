@@ -8,12 +8,12 @@ contiifstream${DYN_LIB_EXT}
 control-gr${DYN_LIB_EXT}
 control-pd${DYN_LIB_EXT}
 derivator${DYN_LIB_EXT}
+exception-dgm${DYN_LIB_EXT}
 distant-shell${DYN_LIB_EXT}
 dynamic${DYN_LIB_EXT}
 dynamic-hrp2${DYN_LIB_EXT}
 dynamic-hrp2_10${DYN_LIB_EXT}
 dynamic-hrp2_10_old${DYN_LIB_EXT}
-exception-dgm${DYN_LIB_EXT}
 exception-pg${DYN_LIB_EXT}
 feature-1d${DYN_LIB_EXT}
 feature-generic${DYN_LIB_EXT}
