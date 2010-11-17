@@ -19,7 +19,6 @@ CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
 INCLUDE(cmake/base.cmake)
 
 SET(PROJECT_NAME sot-openhrp-scripts)
-SET(PROJECT_VERSION 1.0.0.99)
 SET(PROJECT_DESCRIPTION
   "Python and dynamic-graph scripts associated to the sot-openhrp package.")
 SET(PROJECT_URL "http://github.com/jrl-umi3218/sot-openhrp-scripts")
