@@ -8,6 +8,9 @@ pg.parsecmd :singlesupporttime 0.7
 # Set the velocity reference to the one we wish to start the robot with
 set pg.velocitydes [3](0.1,0.0,0.0)
 
+# When velocity reference is at zero, the robot stops all motion after n steps
+pg.parsecmd :numberstepsbeforestop 4
+
 # Set constraints on XY
 pg.parsecmd :setfeetconstraint XY 0.09 0.06
 
