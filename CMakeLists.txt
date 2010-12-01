@@ -29,8 +29,7 @@ SETUP_PROJECT()
 ADD_REQUIRED_DEPENDENCY("dynamic-graph >= 1.0.0")
 
 # Search for closed-source packages.
-ADD_REQUIRED_DEPENDENCY("hrp2_10-small >= 1.0.0")
-ADD_REQUIRED_DEPENDENCY("hrp2_10-small-old >= 1.0.0")
+ADD_REQUIRED_DEPENDENCY("hrp2_10 >= 1.0.0")
 ADD_REQUIRED_DEPENDENCY("hrp2_14 >= 1.0.0")
 
 # Search for OpenHRP root directory.
