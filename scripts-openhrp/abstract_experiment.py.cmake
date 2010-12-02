@@ -18,7 +18,8 @@
 import os, sys, time
 
 # Make sure the OpenHRP Python modules are found.
-sys.path.append('@HRP2_SCRIPT_DIR@')
+hrp2_script_dir=os.environ['OPENHRPHOME']+'/Controller/IOserver/robot/HRP2JRL/script'
+sys.path.append(hrp2_script_dir)
 
 # HRP-2 specific
 import hrp

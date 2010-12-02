@@ -14,10 +14,6 @@
 # sot-openhrp-scripts. If not, see <http://www.gnu.org/licenses/>.
 
 # Make sure required files are installed at the expected location.
-IF(NOT EXISTS ${HRP2_SCRIPT_DIR}/hrp.py)
-  MESSAGE(FATAL_ERROR "Failed to find hrp.py file.")
-ENDIF()
-
 CONFIGURE_FILE(
   "abstract_experiment.py.cmake"
   "${CMAKE_CURRENT_BINARY_DIR}/abstract_experiment.py"

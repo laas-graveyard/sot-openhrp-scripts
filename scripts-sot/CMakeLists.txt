@@ -39,10 +39,6 @@ IF(NOT EXISTS ${HRP2_CONFIG_DIRECTORY}/HRP2Specificities.xml
   MESSAGE(FATAL_ERROR "Missing files in HRP2-14 robot directory.")
 ENDIF()
 
-# Check that robot model exists.
-SET(HRP2VRML_PATH
-  ${OPENHRP_HOME}/Controller/IOserver/robot/${OPENHRP_ROBOT}/model)
-
 # Watch for substitued variables in the sot scripts.
 LIST(APPEND LOGGING_WATCHED_VARIABLES
   DYN_LIB_EXT

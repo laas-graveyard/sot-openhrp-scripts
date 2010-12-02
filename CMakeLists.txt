@@ -32,31 +32,15 @@ ADD_REQUIRED_DEPENDENCY("dynamic-graph >= 1.0.0")
 ADD_REQUIRED_DEPENDENCY("hrp2_10 >= 1.0.0")
 ADD_REQUIRED_DEPENDENCY("hrp2_14 >= 1.0.0")
 
-# Search for OpenHRP root directory.
-SET(OPENHRP_ROBOT HRP2JRL)
-FIND_PATH(
-  OPENHRP_HOME
-  NAMES
-   bin/unix/GrxUI.sh
-   Controller/IOserver/robot/${OPENHRP_ROBOT}/script/hrp.py
-   Controller/IOserver/robot/${OPENHRP_ROBOT}/model/HRP2JRLmain.wrl
-  DOC "OpenHRP home directory"
-  PATHS ENV OPENHRP_HOME
-  PATHS ENV OPENHRPHOME # alternative syntax. I've seen both used.
-  )
-IF(NOT OPENHRP_HOME)
-  MESSAGE(FATAL_ERROR "Failed to find the OpenHRP home (root) directory. Try setting your OPENHRP_HOME environment or cmake variable.")
-ENDIF(NOT OPENHRP_HOME)
 
 # Deduce directories location.
-SET(HRP2_SCRIPT_DIR ${OPENHRP_HOME}/Controller/IOserver/robot/HRP2JRL/script)
-SET(HRP2_MODEL_DIRECTORY
-  ${OPENHRP_HOME}/Controller/IOserver/robot/${OPENHRP_ROBOT}/model)
+SET(HRP2_10_MODEL_DIRECTORY ${HRP2_10_PKGDATAROOTDIR})
+SET(HRP2_MODEL_DIRECTORY ${HRP2_14_PKGDATAROOTDIR})
 
 # Watch interesting variables.
 LIST(APPEND LOGGING_WATCHED_VARIABLES
-  HRP2_SCRIPT_DIR
-  HRP2_MODEL_DIRECTORY
+  HRP2_10_MODEL_DIRECTORY
+  HRP2_14_MODEL_DIRECTORY
   )
 
 ADD_SUBDIRECTORY(projects-openhrp)
