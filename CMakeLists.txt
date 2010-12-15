@@ -26,6 +26,9 @@ SET(PROJECT_URL "http://github.com/jrl-umi3218/sot-openhrp-scripts")
 
 SETUP_PROJECT()
 
+ADD_REQUIRED_DEPENDENCY("sot-openhrp >= 1.0.0")
+ADD_REQUIRED_DEPENDENCY("sot-dynamic >= 1.0.0")
+ADD_REQUIRED_DEPENDENCY("sot-pattern-generator >= 1.0.0")
 ADD_REQUIRED_DEPENDENCY("dynamic-graph >= 1.0.0")
 
 # Search for closed-source packages.
