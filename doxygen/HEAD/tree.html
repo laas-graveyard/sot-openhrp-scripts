@@ -1,3 +1,4 @@
+<!-- This comment will put IE 6, 7 and 8 in quirks mode -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
@@ -66,21 +67,19 @@
       <script type="text/javascript"><!--
       var searchBox = new SearchBox("searchBox", "search", true, 'Search');
       --></script>
-      <div class="tabsearch">
-        <div id="MSearchBox" class="MSearchBoxInactive">
-          <span class="left">
-            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
-            <input type="text" id="MSearchField" value="Search" accesskey="S"
-                   onfocus="searchBox.OnSearchFieldFocus(true)" 
-                   onblur="searchBox.OnSearchFieldFocus(false)" 
-                   onkeyup="searchBox.OnSearchFieldChange(event)"/>
-          </span><span class="right">
-            <img id="MSearchSelect" src="search/mag_sel.png"
-                 onmouseover="return searchBox.OnSearchSelectShow()"
-                 onmouseout="return searchBox.OnSearchSelectHide()"
-                 alt=""/>
-          </span>
-        </div>
+      <div id="MSearchBox" class="MSearchBoxInactive">
+      <div class="MSearchBoxRow"><span class="MSearchBoxLeft">
+      <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+      <input type="text" id="MSearchField" value="Search" accesskey="S"
+           onfocus="searchBox.OnSearchFieldFocus(true)" 
+           onblur="searchBox.OnSearchFieldFocus(false)" 
+           onkeyup="searchBox.OnSearchFieldChange(event)"/>
+      </span><span class="MSearchBoxRight">
+      <img id="MSearchSelect" src="search/search.png"
+           onmouseover="return searchBox.OnSearchSelectShow()"
+           onmouseout="return searchBox.OnSearchSelectHide()"
+           alt=""/>
+      </span></div><div class="MSearchBoxSpacer">&nbsp;</div>
       </div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -103,3 +102,4 @@
     </div>
   </body>
 </html>
+
