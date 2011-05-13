@@ -8,13 +8,22 @@
 
 # Uncomment this to turn on verbose mode.
 # export DH_VERBOSE=1
+export PKG_CONFIG_PATH=/opt/openrobots/lib/pkgconfig:$PKG_CONFIG_PATH
+CFLAGS = -O3 -DNDEBUG
+CXXFLAGS = -O3 -DNDEBUG
 
 # FIXME: this package is for hrp2-14 ONLY!!!
 override_dh_auto_configure:
-	dh_auto_configure -- -DOPENHRP_HOME=/opt/OpenHRP-3.0.5 		       \
- -DHRP2_SCRIPT_DIR=/opt/OpenHRP-3.0.5/Controller/IOserver/robot/HRP2JRL/script \
- -DHRP2_CONFIG_DIRECTORY=/usr/share/hrp2_14				       \
- -DHRP2_MODEL_DIRECTORY=/opt/OpenHRP-3.0.5/Controller/IOserver/robot/HRP2JRL/model
+	dh_auto_configure -- -DOPENHRP_HOME=/opt/grx3.0 		       \
+ -DHRP2_SCRIPT_DIR=/opt/grx3.0/HRP2LAAS/script \
+ -DHRP2_CONFIG_DIRECTORY=/opt/openrobots/share/hrp2_14				       \
+ -DHRP2_MODEL_DIRECTORY=/opt/grx3.0/HRP2LAAS/model
+
+override_dh_shlibdeps:
+	export LD_LIBRARY_PATH=\
+/opt/openrobots/lib:\
+/opt/openrobots/lib/plugin:$(LD_LIBRARY_PATH) \
+&& dh_shlibdeps --
 
 %:
 	dh  $@
