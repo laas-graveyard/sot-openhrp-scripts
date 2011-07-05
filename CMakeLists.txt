@@ -30,7 +30,7 @@ ADD_REQUIRED_DEPENDENCY("sot-openhrp >= 1.0.0")
 ADD_REQUIRED_DEPENDENCY("sot-dynamic >= 1.0.0")
 ADD_REQUIRED_DEPENDENCY("sot-pattern-generator >= 1.0.0")
 ADD_REQUIRED_DEPENDENCY("dynamic-graph >= 1.0.0")
-ADD_REQUIRED_DEPENDENCY("dg-middleware >= 1.0.0")
+ADD_REQUIRED_DEPENDENCY("dg-middleware >= 1.1.0")
 
 # Search for closed-source packages.
 ADD_REQUIRED_DEPENDENCY("hrp2-10 >= 1.0.0")
