@@ -14,7 +14,16 @@ Standards-Version: 3.8.4
 Section: libs
 #Homepage:
 
-Package: sot-openhrp-scripts
+Package: sot-openhrp-scripts-hrp2-14
+Architecture: all
+Depends: libsot-openhrp-dev (>= 1.1.1),  ${shlibs:Depends}, ${misc:Depends}
+Description: OpenHRP and dynamic-graph scripts
+ Scripts are required to perform high-level tasks when using OpenHRP and
+ dynamic-graph.
+ This package gathers Python OpenHRP scripts and dynamic-graph scripts.
+ It does not contain any compiled data.
+
+Package: sot-openhrp-scripts-hrp2-10
 Architecture: all
 Depends: libsot-openhrp-dev (>= 1.1.1),  ${shlibs:Depends}, ${misc:Depends}
 Description: OpenHRP and dynamic-graph scripts

@@ -12,12 +12,21 @@ export PKG_CONFIG_PATH=/opt/openrobots/lib/pkgconfig:$PKG_CONFIG_PATH
 CFLAGS = -O3 -DNDEBUG
 CXXFLAGS = -O3 -DNDEBUG
 
-# FIXME: this package is for hrp2-14 ONLY!!!
+
 override_dh_auto_configure:
-	dh_auto_configure -- -DOPENHRP_HOME=/opt/grx3.0 		       \
- -DHRP2_SCRIPT_DIR=/opt/grx3.0/HRP2LAAS/script \
- -DHRP2_CONFIG_DIRECTORY=/opt/openrobots/share/hrp2_14				       \
- -DHRP2_MODEL_DIRECTORY=/opt/grx3.0/HRP2LAAS/model
+	ifneq (,$(findstring sot-openhrp-scripts-hrp2-14, $(shell dh_listpackages)))
+		dh_auto_configure -- -DOPENHRP_HOME=/opt/grx3.0 \
+		 -DHRP2_SCRIPT_DIR=/opt/grx3.0/HRP2LAAS/script \
+		 -DHRP2_CONFIG_DIRECTORY=/opt/openrobots/share/hrp2_14 \
+		 -DHRP2_MODEL_DIRECTORY=/opt/grx3.0/HRP2LAAS/model
+	endif
+	ifneq (,$(findstring sot-openhrp-scripts-hrp2-10, $(shell dh_listpackages)))
+		dh_auto_configure -- -DOPENHRP_HOME=/opt/grx3.0 \
+		 -DHRP2_SCRIPT_DIR=/opt/grx3.0/HRP2JRL/script  \
+		 -DHRP2_CONFIG_DIRECTORY=/opt/openrobots/share/hrp2_10     \
+		 -DHRP2_MODEL_DIRECTORY=/opt/grx3.0/HRP2JRL/model
+	endif
+
 
 override_dh_shlibdeps:
 	export LD_LIBRARY_PATH=\
