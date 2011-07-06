@@ -24,7 +24,7 @@ SET(PLUGIN_LIST_FILENAME plugin.txt)
 #FIXME: should be small but robot package is broken for now.
 # Files from small robot have to be copied manually,
 #       PreviewControlParameters.ini is also missing.
-SET(HRP2_CONFIG_DIRECTORY ${HRP2_14_PREFIX}/share/hrp2_14)
+#SET(HRP2_CONFIG_DIRECTORY ${HRP2_14_PREFIX}/share/hrp2_14)
 
 SET(HRP2_10-SMALL_DIRECTORY ${HRP2_10_SMALL_PREFIX}/share/hrp2_10-small)
 SET(HRP2_10-SMALL-OLD_DIRECTORY
@@ -36,9 +36,9 @@ IF(NOT EXISTS  ${HRP2_CONFIG_DIRECTORY}/HRP2Specificities.xml
     # OR NOT EXISTS ${HRP2_CONFIG_DIRECTORY}/HRP2SpecificitiesSmall.xml
     #OR NOT EXISTS ${HRP2_CONFIG_DIRECTORY}/HRP2LinkJointRankSmall.xml
     #OR NOT EXISTS ${HRP2_CONFIG_DIRECTORY}/PreviewControlParameters.ini
+  MESSAGE(STATUS "${HRP2_CONFIG_DIRECTORY}/HRP2Specificities.xml")
+  MESSAGE(STATUS "${HRP2_CONFIG_DIRECTORY}/HRP2LinkJointRank.xml")
   MESSAGE(FATAL_ERROR "Missing files in HRP2-14 robot directory :")
-  MESSAGE(FATAL_ERROR "${HRP2_CONFIG_DIRECTORY}/HRP2Specificities.xml")
-  MESSAGE(FATAL_ERROR "${HRP2_CONFIG_DIRECTORY}/HRP2LinkJointRank.xml")
 ENDIF()
 
 # Watch for substitued variables in the sot scripts.

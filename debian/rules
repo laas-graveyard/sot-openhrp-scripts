@@ -16,12 +16,14 @@ CXXFLAGS = -O3 -DNDEBUG
 override_dh_auto_configure:
 	if [ "$(findstring sot-openhrp-scripts-hrp2-14,$(shell dh_listpackages))" != "" ] ; then \
 		dh_auto_configure -- -DOPENHRP_HOME=/opt/grx3.0 \
+		 -DCMAKE_BUILD_TYPE=RELEASE -DGENERATE_DOC=ON -DCMAKE_INSTALL_PREFIX=/opt/openrobots \
 		 -DHRP2_SCRIPT_DIR=/opt/grx3.0/HRP2LAAS/script \
 		 -DHRP2_CONFIG_DIRECTORY=/opt/openrobots/share/hrp2-14 \
 		 -DHRP2_MODEL_DIRECTORY=/opt/grx3.0/HRP2LAAS/model;  \
 	fi; \
 	if [ "$(findstring sot-openhrp-scripts-hrp2-10,$(shell dh_listpackages))" != "" ] ; then \
 		dh_auto_configure -- -DOPENHRP_HOME=/opt/grx3.0 \
+		 -DCMAKE_BUILD_TYPE=RELEASE -DGENERATE_DOC=ON -DCMAKE_INSTALL_PREFIX=/opt/openrobots \
 		 -DHRP2_SCRIPT_DIR=/opt/grx3.0/HRP2LAAS/script \
 		 -DHRP2_CONFIG_DIRECTORY=/opt/openrobots/share/hrp2-10 \
 		 -DHRP2_MODEL_DIRECTORY=/opt/grx3.0/HRP2LAAS/model;  \
