@@ -33,8 +33,8 @@ ADD_REQUIRED_DEPENDENCY("dynamic-graph >= 1.0.0")
 ADD_REQUIRED_DEPENDENCY("dg-middleware >= 1.1.0")
 
 # Search for closed-source packages.
-ADD_REQUIRED_DEPENDENCY("hrp2-10 >= 1.0.0")
-ADD_REQUIRED_DEPENDENCY("hrp2-14 >= 1.0.0")
+ADD_OPTIONAL_DEPENDENCY("hrp2-10 >= 1.0.0")
+ADD_OPTIONAL_DEPENDENCY("hrp2-14 >= 1.0.0")
 
 
 # Deduce directories location.
