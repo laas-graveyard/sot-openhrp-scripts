@@ -31,12 +31,14 @@ SET(HRP2_10-SMALL-OLD_DIRECTORY
   ${HRP2_10_SMALL_OLD_PREFIX}/share/hrp2_10-small-old)
 
 # Check directories for required files.
-IF(NOT EXISTS ${HRP2_CONFIG_DIRECTORY}/HRP2Specificities.xml
+IF(NOT EXISTS  ${HRP2_CONFIG_DIRECTORY}/HRP2Specificities.xml
     OR NOT EXISTS ${HRP2_CONFIG_DIRECTORY}/HRP2LinkJointRank.xml)
     # OR NOT EXISTS ${HRP2_CONFIG_DIRECTORY}/HRP2SpecificitiesSmall.xml
     #OR NOT EXISTS ${HRP2_CONFIG_DIRECTORY}/HRP2LinkJointRankSmall.xml
     #OR NOT EXISTS ${HRP2_CONFIG_DIRECTORY}/PreviewControlParameters.ini
-  MESSAGE(FATAL_ERROR "Missing files in HRP2-14 robot directory.")
+  MESSAGE(FATAL_ERROR "Missing files in HRP2-14 robot directory :")
+  MESSAGE(FATAL_ERROR "${HRP2_CONFIG_DIRECTORY}/HRP2Specificities.xml")
+  MESSAGE(FATAL_ERROR "${HRP2_CONFIG_DIRECTORY}/HRP2LinkJointRank.xml")
 ENDIF()
 
 # Watch for substitued variables in the sot scripts.
