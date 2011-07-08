@@ -21,10 +21,6 @@ SET(DYN_LIB_EXT ${CMAKE_SHARED_LIBRARY_SUFFIX})
 SET(DG_SCRIPT_DIR ${CMAKE_INSTALL_PREFIX}/share/dynamic-graph/script)
 SET(PLUGIN_LIST_FILENAME plugin.txt)
 
-#FIXME: should be small but robot package is broken for now.
-# Files from small robot have to be copied manually,
-#       PreviewControlParameters.ini is also missing.
-#SET(HRP2_CONFIG_DIRECTORY ${HRP2_14_PREFIX}/share/hrp2_14)
 
 SET(HRP2_10-SMALL_DIRECTORY ${HRP2_10_SMALL_PREFIX}/share/hrp2_10-small)
 SET(HRP2_10-SMALL-OLD_DIRECTORY

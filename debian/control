@@ -5,6 +5,7 @@ Build-Depends: debhelper (>= 7.0.50~), cmake (>= 2.6),
 	       doxygen (>= 1.6.3),
 	       pkg-config (>= 0.22),
 	       hrp2-10-data (>= 1.0.1),
+	       hrp2-14-data (>= 1.7.6),	 
 	       libdg-middleware-dev (>= 1.2.1),
 	       libsot-openhrp-dev (>= 1.1.1)
 Standards-Version: 3.8.4
@@ -13,12 +14,13 @@ Standards-Version: 3.8.4
 Section: libs
 #Homepage:
 
-Package: sot-openhrp-scripts-hrp2-14
+Package: sot-openhrp-scripts-hrp2
 Architecture: all
 Depends: debhelper (>= 7.0.50~), cmake (>= 2.6),
 	 doxygen (>= 1.6.3),
 	 pkg-config (>= 0.22),
-         hrp2-14-data (>= 1.7.6),	 
+         hrp2-14-data (>= 1.7.6),
+         hrp2-10-data (>= 1.0.1),
 	 libsot-openhrp-dev (>= 1.1.1),  ${shlibs:Depends}, ${misc:Depends}
 Description: OpenHRP and dynamic-graph scripts
  Scripts are required to perform high-level tasks when using OpenHRP and
@@ -26,16 +28,3 @@ Description: OpenHRP and dynamic-graph scripts
  This package gathers Python OpenHRP scripts and dynamic-graph scripts.
  It does not contain any compiled data.
 
-Package: sot-openhrp-scripts-hrp2-10
-Architecture: all
-Depends: debhelper (>= 7.0.50~), cmake (>= 2.6),
-	 doxygen (>= 1.6.3),
-	 pkg-config (>= 0.22),
-	 hrp2-10-data (>= 1.0.1),
-	 libdg-middleware-dev (>= 1.2.1),
-	 libsot-openhrp-dev (>= 1.1.1),  ${shlibs:Depends}, ${misc:Depends}
-Description: OpenHRP and dynamic-graph scripts
- Scripts are required to perform high-level tasks when using OpenHRP and
- dynamic-graph.
- This package gathers Python OpenHRP scripts and dynamic-graph scripts.
- It does not contain any compiled data.

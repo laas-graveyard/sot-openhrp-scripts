@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # -*- coding: iso-8859-15 -*-
-# Copyright (C) 2010 Fran�ois Bleibel, Thomas Moulard, JRL, CNRS/AIST.
+# Copyright (C) 2010 Franï¿œois Bleibel, Thomas Moulard, JRL, CNRS/AIST.
 #
 # This file is part of sot-openhrp-scripts.
 # sot-openhrp-scripts is free software: you can redistribute it and/or
@@ -18,7 +18,11 @@
 import os, sys, time
 
 # Make sure the OpenHRP Python modules are found.
-sys.path.append('@HRP2_SCRIPT_DIR@')
+hrp2_script_dir='/opt/grx3.0/HRP2JRL/script'
+sys.path.append(hrp2_script_dir)
+hrp2_script_dir='/opt/grx3.0/HRP2LAAS/script'
+sys.path.append(hrp2_script_dir)
+
 
 # HRP-2 specific
 import hrp
@@ -89,7 +93,7 @@ class AbstractExperiment(object):
     robotics application and by overriding the method implementation.
     """
     def __init__(self,
-                 robot = Hrp2_10,
+                 robot = Hrp2_14,
                  initialPositions = defaultInitialPositions):
         """
         The constructor takes two parameters:
@@ -128,14 +132,14 @@ class AbstractExperiment(object):
             self.ms.create("seqplay","seq", self.corba_string))
         self.seq.start()
 
-        robot_string = ""
-        if ( self.robot == Hrp2_10 ):
+        # Stack of tasks.
+	robot_string = ""
+	if ( self.robot == Hrp2_10 ):
             robot_string = "HRP2JRL10Small"
 
-        # Stack of tasks.
         self.ms.load("StackOfTasks")
         self.SoT = self.ms.create("StackOfTasks","SoT",robot_string)
-	    
+
         if(not self.GEOMETRIC_MODE):
             self.ms.load("hstabilizer")
             self.st = self.ms.create("hstabilizer","st","")
@@ -213,7 +217,8 @@ class AbstractExperiment(object):
             print "Invalid robot. Aborting..."
             sys.exit(1)
 
-	self.SoT.sendMsg(":script import jointlimit")
+        if (self.robot == Hrp2_10):
+            self.SoT.sendMsg(":script import jointlimit")
 
 
         # Manipulation.
@@ -308,6 +313,7 @@ class AbstractExperiment(object):
         if(self.with_taskchest):
             self.SoT.sendMsg(":script sot.push taskLeftArm")
             self.SoT.sendMsg(":script sot.push taskRightArm")
+	    self.SoT.sendMsg(":script sot.push taskChest")
 
         self.SoT.sendMsg(":script sot.push taskTwofeet")
         self.SoT.sendMsg(":script sot.push taskWaist")
@@ -344,18 +350,6 @@ class AbstractExperiment(object):
         self.log.stop()
         self.log.save("WalkTask")
 
-    def startStepper(self):
-        print "starting the stepper"
-        self.SoT.sendMsg(":script import walking/startherdt")
-
-    def stopStepper(self):
-        print "stopping the stepper"
-        self.SoT.sendMsg(":script set pg.velocitydes [3](0, 0, 0)")
-
-    def startWalking(self):
-        print "starting walk"
-        self.SoT.sendMsg(":script set pg.velocitydes [3](0.1, 0, 0)")
-
 exp = None
 def launchExperiment(Experiment):
     """
@@ -373,21 +367,10 @@ def launchExperiment(Experiment):
     print "Initialization finished."
     waitInputMenu([[
                 '------- Sequence ----------',
-                '#label',
-
-                'Start stepper',
-                'exp.startStepper()',
-
-                'Walk forward (10cm/s)',
-                'exp.startWalking()',
-
-                'Stop stepper',
-                'exp.stopStepper();',
-
-                'Stop and cleanup',
-                'exp.stopExperiment()',
-
+                '#label'
                 ]])
+    exp.stopStepper()
+    exp.stopExperiment()
     print "Experiment has finished."
 
 if __name__ == "main":

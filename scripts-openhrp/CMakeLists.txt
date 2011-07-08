@@ -14,26 +14,15 @@
 # sot-openhrp-scripts. If not, see <http://www.gnu.org/licenses/>.
 
 # Make sure required files are installed at the expected location.
-CONFIGURE_FILE(
-  "abstract_experiment.py.cmake"
-  "${CMAKE_CURRENT_BINARY_DIR}/abstract_experiment.py"
-  IMMEDIATE
-  )
-
-CONFIGURE_FILE(
-  "hrp2_10-default.py.cmake"
-  "${CMAKE_CURRENT_BINARY_DIR}/hrp2_10-default.py"
-  IMMEDIATE
-  )
 
 INSTALL(
-    FILES ${CMAKE_CURRENT_BINARY_DIR}/abstract_experiment.py
+    FILES abstract_experiment.py
     DESTINATION share/sot-openhrp/script
     PERMISSIONS OWNER_READ OWNER_WRITE GROUP_READ WORLD_READ
 )
 
 INSTALL(
-    FILES ${CMAKE_CURRENT_BINARY_DIR}/hrp2_10-default.py
+    FILES hrp2_10-default.py
     DESTINATION share/sot-openhrp/script
     PERMISSIONS OWNER_READ OWNER_WRITE GROUP_READ WORLD_READ
 )

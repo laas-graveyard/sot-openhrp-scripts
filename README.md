@@ -30,8 +30,28 @@ directory:
 Please note that CMake produces a `CMakeCache.txt` file which should
 be deleted to reconfigure a package from scratch.
 
-By building this package, you install the scripts in two different installation directories:
-
-- `${OPENHRP_HOME}/Controller/IOServer/${ROBOT}/scripts` directory
+By building this package, you install the scripts in different installation directories:
+- HRP2_SCRIPT_DIR for python script with openhrp
+- `${CMAKE_INSTALL_PREFIX}/share/sot-openhrp/` directory
   for python scripts,
 - `${CMAKE_INSTALL_PREFIX}/share/dynamic-grap/script` directory for SOT scripts
+
+CMAKE must have the following directory set:
+- HRP2_SCRIPT_DIR typically:/opt/grx3.0/HRP2JRL/script
+- HRP2_CONFIG_DIR:/opt/openrobots/share/hrp2-10
+- HRP2_MODEL_DIRECTORY:/opt/grx3.0/HRP2JRL/model
+
+You can choose your robot by setting HRP2_NAME using:
+HRP2_NAME=hrp2-10 
+or
+HRP2_NAME=hrp2-14
+
+this gives for instance:
+cmake \ 
+../pkgsrc \ 
+-DCMAKE_INSTALL_PREFIX=/opt/openrobots/ \ 
+-DCMAKE_BUILD_TYPE=RELEASE \ 
+-DHRP2_SCRIPT_DIR=/opt/grx3.0//HRP2JRL/script/ \ 
+-DHRP2_CONFIG_DIRECTORY=/opt/openrobots//share/hrp2-10 \
+-DHRP2_MODEL_DIRECTORY=/opt/grx3.0//HRP2JRL/model
+-DHRP2_NAME=hrp2-10
