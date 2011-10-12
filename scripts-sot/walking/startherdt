@@ -12,7 +12,7 @@ set pg.velocitydes [3](0.1,0.0,0.0)
 pg.parsecmd :numberstepsbeforestop 4
 
 # Set constraints on XY
-pg.parsecmd :setfeetconstraint XY 0.09 0.06
+pg.parsecmd :setfeetconstraint XY 0.04 0.04
 
 # Start the robot with a speed of 0.1 m/0.8 s
 pg.parsecmd :HerdtOnline 0.1 0.0 0.0
